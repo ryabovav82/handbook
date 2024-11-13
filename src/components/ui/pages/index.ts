@@ -1,3 +1,3 @@
-export * from './constructor-page';
+export * from './handbook-page';
 export * from './login';
 export * from './register';
