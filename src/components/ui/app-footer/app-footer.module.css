@@ -1,0 +1,35 @@
+.footer {
+    background-color: #2D3142;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.footer_content {
+    color: #ffffff;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    font-family: 'IBM Plex mono', sans-serif;
+}
+
+.copyright {
+    border: 0.5px solid #ffffff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    position: relative;
+}
+
+.copyright_c {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-size: 13px;
+}
+

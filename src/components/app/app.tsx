@@ -5,9 +5,9 @@ import { AppMain } from '../app-main';
 const App = () => (
   <div className={styles.app}>
     <AppHeader />
-    <AppFooter />
     <AppNavigate />
     <AppMain />
+    <AppFooter />
   </div>
 );
 
