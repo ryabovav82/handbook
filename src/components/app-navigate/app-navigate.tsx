@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { AppNavigateUI } from '../ui/app-navigate';
 
-export const AppNavigate: FC = () => <AppNavigateUI />;
+export const AppNavigate: FC<any> = memo(() => <AppNavigateUI />);
