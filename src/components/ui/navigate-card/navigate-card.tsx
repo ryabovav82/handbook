@@ -8,9 +8,9 @@ interface CardProps {
 }
 
 export const NavigateCardUI: FC<CardProps> = memo(({ content, to }) => (
-  //<Link to={to} className={styles.cardLink}>
-  <div className={styles.card}>
-    <p className={styles.content}>{content}</p>
-  </div>
-  //</Link>
+  <Link to={to} className={styles.cardLink}>
+    <div className={styles.card}>
+      <p className={styles.content}>{content}</p>
+    </div>
+  </Link>
 ));
