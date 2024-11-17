@@ -1,1 +1,1 @@
-export { HandbookPageUI} from './handbook-page';
+export { HandbookPageUI } from './handbook-page';
