@@ -3,9 +3,9 @@ import { HandbookPageUI } from '../../components/ui/pages/handbook-page/handbook
 
 export const HandbookPage: FC = () => (
   <>
-    <HandbookPageUI isCardsLoading={false} />  
+    <HandbookPageUI isCardsLoading={false} />
   </>
 );
 
-// TODO: возможно... реализовать потом на момент загрузки данных прелоадер  
+// TODO: возможно... реализовать потом на момент загрузки данных прелоадер
 // пока поставила isCardsLoading={false}

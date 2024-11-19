@@ -1,3 +1,3 @@
 export type HandbookPageUIProps = {
-	isCardsLoading: boolean;
+  isCardsLoading: boolean;
 };

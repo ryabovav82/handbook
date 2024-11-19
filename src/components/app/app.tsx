@@ -20,7 +20,7 @@ const App = () => {
 
       <Routes>
         {/* <Route path='/' element={<AppMain />} /> */}
-              <Route path='/' element={!shouldHideNavigate && <HandbookPage />} />
+        <Route path='/' element={!shouldHideNavigate && <HandbookPage />} />
 
         <Route path='/faq' element={<h1>FAQ Page</h1>} />
         <Route path='/report-error' element={<h1>Report Error Page</h1>} />
