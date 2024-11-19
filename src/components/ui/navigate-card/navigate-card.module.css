@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #3e3d3d; 
+    background-color: #4F5D75; 
     color: white; 
     border-radius: 8px;
     min-height: 30px; 
@@ -17,7 +17,15 @@
   .card:hover {
     background-color: #f47c2b; /* Оранжевый цвет при наведении */
   }
-  
+
+  .card:focus {
+    background-color: #f47c2b; /* Оранжевый цвет при наведении */
+  }
+
+  .card:focus-visible {
+    background-color: #f47c2b; /* Оранжевый цвет при наведении */
+  }
+
   .content {
     font-size: 16px;
     margin: 0;
