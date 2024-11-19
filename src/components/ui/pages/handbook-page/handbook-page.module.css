@@ -1,0 +1,12 @@
+.containerMain {
+    width: 100%;
+    margin: 0 auto;
+  }
+.main {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 100%;
+    flex-wrap: wrap;
+  }
+  
