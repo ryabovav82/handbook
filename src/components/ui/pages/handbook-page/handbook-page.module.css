@@ -1,12 +1,24 @@
 .containerMain {
-    width: 100%;
-    margin: 10px auto;
+    /* width: 100%; */
+     margin: 10px auto; 
+    /* display: flex;
+     flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    width: 1440px; */ 
   }
 .main {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 350px 1fr;
     gap: 20px;
     height: 100%;
     flex-wrap: wrap;
   }
-  
+
+  @media screen and (max-width: 390px) {
+    .main {
+      grid-template-columns: 350px;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+    }
+  }

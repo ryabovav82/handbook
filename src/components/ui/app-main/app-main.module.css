@@ -1,0 +1,27 @@
+.main{
+/* height: 100vh; */
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100vw;
+}
+
+.main_base {
+    /* background-image: url('/public/images/main_3.png');  */
+    /* height: 100%; */
+}
+
+.main_base_img {
+    object-fit: cover;
+    object-position: center center;
+    background-repeat: no-repeat;
+    height: 100%;
+    /* width: 100%; */
+}
+
+
+@media screen and (max-width: 390px) {
+    .main_base {
+        width: 350px;
+ }
+}
