@@ -1,15 +1,17 @@
 .navigate {
     width: 350px;
-    /* height: 100vh; */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch; 
+    align-items: center; 
     background-color: #2D3142;
     padding: 20px;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .navigate > * {
@@ -45,3 +47,17 @@
   .addCard:hover .addCardIcon {
     color: #1c1c21;
   }
+
+  @media screen and (max-width: 768px) {
+    .navigate {
+        width: 768px;
+        
+ }
+}
+@media screen and (max-width: 370px) {
+  .navigate {
+      width: 350px;
+      
+}
+}
+

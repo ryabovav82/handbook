@@ -9,7 +9,7 @@ export const AppMainUI: FC = () => {
   return (
     <div className={styles.main}>
       {!isSelected && 
-       <div> <img className={styles.main_base_img} src= {require('/public/images/main_3.png')} alt='Create handbook' /></div>
+       <div className={styles.main_base}> <img className={styles.main_base_img} src= {require('/public/images/main_3.png')} alt='Create handbook' /></div>
       }
       <div className={styles.main_cards}>
         {isSelected && <div>Карточка с сервера</div>}

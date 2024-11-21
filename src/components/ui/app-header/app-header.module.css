@@ -16,14 +16,25 @@
     font-family: 'IBM Plex mono', sans-serif;
   }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
 .header_content {
     grid-template-columns: min-content;
     grid-template-rows: repeat(2, min-content);
     gap: 5px;
     padding: 0 20px;
 }
+
+.header {
+  width: 768px;
+ }
   }
+
+  @media screen and (max-width: 370px) {
+    .header {
+      width: 350px;
+     }
+  }
+
 
   .logo {
     color: #ffffff;

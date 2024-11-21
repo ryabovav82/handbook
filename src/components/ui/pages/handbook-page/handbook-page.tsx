@@ -9,7 +9,7 @@ import { HandbookPageUIProps } from './type';
 // TODO: возможно... реализовать потом на момент загрузки данных прелоадер, учлащая его в HandbookPageUIProps
 export const HandbookPageUI: FC<HandbookPageUIProps> = ({ isCardsLoading }) => (
   <main className={styles.containerMain}>
-    <div className={styles.main}>
+    <div className={styles.main_hp}>
       <AppNavigate />
       {isCardsLoading ? <Preloader /> : <AppMain />}
     </div>
