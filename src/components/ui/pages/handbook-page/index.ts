@@ -1,1 +1,1 @@
-export { ConstructorPageUI } from './handbook-page';
+export { HandbookPageUI } from './handbook-page';

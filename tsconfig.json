@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es2015", // Устанавливаем ES2015 для поддержки современных возможностей
+    "lib": ["dom", "dom.iterable", "es2015"], // Добавляем ES2015 в библиотеки
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -26,7 +26,8 @@
       "@api": ["src/utils/burger-api.ts"],
       "@slices": ["src/services/slices"],
       "@selectors": ["src/services/selectors"]
-    }
+    },
+    "downlevelIteration": true // Включаем поддержку итераций в старых стандартах
   },
   "include": ["src"]
 }
