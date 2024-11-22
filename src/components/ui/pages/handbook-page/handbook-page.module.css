@@ -23,7 +23,7 @@
   @media screen and (max-width: 370px) {
     .main_hp {
       grid-template-columns: 350px;
-      grid-template-rows: 1fr 1fr;
+      /* grid-template-rows: 1fr 1fr; */
       gap: 10px;
     }
   }

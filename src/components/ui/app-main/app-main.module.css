@@ -2,8 +2,10 @@
 height: 100vh;
 display: flex;
 justify-content: center;
-align-items: center;
+align-items: top;
 overflow: hidden;
+background-color: #2D3142;
+overflow-y: auto;
 }
 
 .main_base {
@@ -29,3 +31,119 @@ overflow: hidden;
         width: 768px;
  }
 }
+
+.main_cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.main_cards_add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align-self: center; */
+    width: 340px;
+    height: 500px;
+    border: 2px dashed #ffffff; 
+    /* border-radius: 5%;  */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    background-color: transparent;
+}
+
+.main_cards_add_icon_plus {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.main_cards_add_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    margin-top: 20px;
+    width: 60px;
+    height: 60px;
+    border: 2px dashed #fff; 
+    border-radius: 50%; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+
+  
+  .main_cards_add_icon:hover .main_cards_add_icon_plus {
+    color: #1c1c21;
+  }
+  .main_cards_add_icon:hover {
+    background-color: #f47c2b; 
+    border-color: #f47c2b;
+  }
+
+
+  .main_cards_card {
+    width: 340px;
+    height: 500px;
+    border: 2px solid #4F5D75; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2% 2% 0 0;; 
+    background-color: #fff;
+}
+
+  .main_base_card_img {
+    width: 92%;
+    /* border-radius: 5%; */
+    margin: 10px;
+    max-height: 45%;
+  }
+
+  .main_base_card_text {
+    background-color: #4F5D75;
+    width: 100%;
+    height: 50%;
+    color: #fff;
+  }
+
+  .main_base_card_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4F5D75;
+    width: 100%;
+    border-top: 2px solid #fff;
+  }
+
+  .main_base_card_button {
+    background-color: #4F5D75;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+  }
+
+  .main_base_card_button:hover {
+    background-color: #f47c2b;
+    color: #fff;
+    border: 2px solid #f47c2b;
+  }
+ 
+  .main_base_card_text {
+    font-family: IBM Plex mono;
+    background-color: #4F5D75;
+    color: #fff;
+  }
