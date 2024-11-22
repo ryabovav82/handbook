@@ -6,9 +6,9 @@ import {
 } from '@reduxjs/toolkit';
 import { TCard } from '@utils-types';
 
-export const getCards = createAsyncThunk<TCard[], void>(
+export const getCards = createAsyncThunk<TCard[], string>(
   'cards/getMCards',
-  async (): Promise<TCard[]> => await getCardsApi('1')
+  async (id: string): Promise<TCard[]> => await getCardsApi(id)
 );
 
 type TCardsState = {
