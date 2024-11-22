@@ -5,6 +5,7 @@ import {
   SerializedError
 } from '@reduxjs/toolkit';
 import { TCard } from '@utils-types';
+import React from 'react';
 
 export const getCards = createAsyncThunk<TCard[], string>(
   'cards/getCards',

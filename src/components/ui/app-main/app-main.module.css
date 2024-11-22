@@ -6,6 +6,8 @@ align-items: top;
 overflow: hidden;
 background-color: #2D3142;
 overflow-y: auto;
+scrollbar-color: #4F5D75 #f7f7f8;
+scrollbar-width: thin;
 }
 
 .main_base {
@@ -38,8 +40,9 @@ overflow-y: auto;
     flex-wrap: wrap;
     justify-content: center;
     align-items: top;
-    gap: 20px;
+    gap: 15px;
     margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .main_cards_add {
@@ -50,7 +53,7 @@ overflow-y: auto;
     width: 340px;
     height: 500px;
     border: 2px dashed #ffffff; 
-    /* border-radius: 5%;  */
+    border-radius: 2%;
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
     background-color: transparent;
@@ -91,27 +94,51 @@ overflow-y: auto;
   .main_cards_card {
     width: 340px;
     height: 500px;
-    border: 2px solid #4F5D75; 
+    border: 2px solid #f7f7f8; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border-radius: 2% 2% 0 0;; 
-    background-color: #fff;
+    border-radius: 2%; 
+    background-color:#f7f7f8;
 }
+
+.main_cards_card_img {
+    width: 92%;
+    border-radius: 2%;
+    background-color: #fff;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45%;
+}
+
 
   .main_base_card_img {
     width: 92%;
     /* border-radius: 5%; */
-    margin: 10px;
-    max-height: 45%;
+    height: 92%;
   }
 
   .main_base_card_text {
-    background-color: #4F5D75;
-    width: 100%;
+    width: 92%;
+    border-radius: 2%;
+    background-color: #fff;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     height: 50%;
-    color: #fff;
+    overflow-y: auto;
+    scrollbar-color: #4F5D75 #f7f7f8;
+    scrollbar-width: thin;
+    font-family: 'IBM Plex mono', sans-serif;
+  }
+  .main_base_card_text_p {
+    width: 92%;
+    font-size: 0.8rem;
+    overflow-y: auto;
   }
 
   .main_base_card_buttons {
@@ -119,31 +146,41 @@ overflow-y: auto;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #4F5D75;
     width: 100%;
-    border-top: 2px solid #fff;
   }
 
   .main_base_card_button {
     background-color: #4F5D75;
     color: #fff;
-    border: 2px solid #fff;
+    border: 2px solid #4F5D75;
     padding: 10px 15px;
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 10px;
+    transition:  0.3s ease;
+    margin: 15px;
   }
-
-  .main_base_card_button:hover {
+  .main_base_card_button_save {
     background-color: #f47c2b;
     color: #fff;
     border: 2px solid #f47c2b;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:  0.3s ease;
+    margin: 15px;
+  }
+
+  .main_base_card_button:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
+    border: 2px solid #BFC0C0;
+  }
+
+  .main_base_card_button_save:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
+    border: 2px solid #BFC0C0;
   }
  
-  .main_base_card_text {
-    font-family: IBM Plex mono;
-    background-color: #4F5D75;
-    color: #fff;
-  }

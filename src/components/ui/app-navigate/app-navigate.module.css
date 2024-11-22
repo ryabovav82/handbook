@@ -11,6 +11,8 @@
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     overflow-y: auto;
+    scrollbar-color: #4F5D75 #f7f7f8;
+    scrollbar-width: thin;
     overflow-x: hidden;
   }
 
