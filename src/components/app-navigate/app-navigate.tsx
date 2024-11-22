@@ -1,4 +1,4 @@
-import { FC, memo, useState } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import { AppNavigateUI } from '../ui/app-navigate';
 
 export interface CardData {
@@ -12,6 +12,7 @@ export interface CardProps {
   to: string;
   content: string;
 }
+
 export const AppNavigate: FC<any> = memo(() => {
   const [cards, setCards] = useState<CardProps[]>([
     { _id: '1', to: '/card/1', content: 'test1' },
