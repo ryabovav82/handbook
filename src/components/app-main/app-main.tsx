@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { AppMainUI } from '../ui/app-main';
 
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getCards } from '../../services/slices/cardSlice'; // Укажите правильный путь до вашего слайса
+import { useDispatch, useSelector } from '../../services/store';
+import { getCards } from '../../services/slices/cardSlice'; 
 
 export interface ICardProps {
   id: number;
@@ -15,7 +15,7 @@ export interface ICardProps {
 // export const AppMain: FC = () => <AppMainUI />;
 
 export const AppMain: FC = () => {
-  // Статически заданные пропсы для примера
+  // пропсы для примера
   const cardProps: ICardProps = {
     id: 1,
     menuItemId: 10,
