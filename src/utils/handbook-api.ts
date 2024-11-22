@@ -75,10 +75,7 @@ export const getMenuItemsApi = () =>
 export const getCardsApi = (id: string) =>
   fetch(`${URLDB}/menuitem/card/${id}`)
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      return data.data;
-    });
+    .then((data) => data);
 
 //Получаем все faqItem
 export const getFaqItemsApi = () =>

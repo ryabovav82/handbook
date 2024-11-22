@@ -7,7 +7,7 @@ import {
 import { TCard } from '@utils-types';
 
 export const getCards = createAsyncThunk<TCard[], string>(
-  'cards/getMCards',
+  'cards/getCards',
   async (id: string): Promise<TCard[]> => await getCardsApi(id)
 );
 
@@ -33,13 +33,11 @@ export const cardsSlice = createSlice({
         state.error = null;
       })
       .addCase(getCards.fulfilled, (state, action) => {
-        console.log('state ' + state);
         state.isLoading = false;
         state.error = null;
         state.data = action.payload;
       })
       .addCase(getCards.rejected, (state, action) => {
-        console.log('state ' + action.error);
         state.isLoading = false;
         state.error = action.error;
       });
