@@ -1,12 +1,30 @@
 .containerMain {
     width: 100%;
-    margin: 10px auto;
+    margin: 10px auto; 
+
   }
-.main {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+.main_hp {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    gap: 10px;
     height: 100%;
-    flex-wrap: wrap;
+    min-width: 768px;
+    /* justify-content: center; */
   }
-  
+
+  @media screen and (max-width: 768px) {
+    .main_hp {
+      grid-template-columns: 768px;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+    }
+  }
+
+  @media screen and (max-width: 370px) {
+    .main_hp {
+      grid-template-columns: 350px;
+      /* grid-template-rows: 1fr 1fr; */
+      gap: 10px;
+    }
+  }
+

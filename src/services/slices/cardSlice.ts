@@ -13,7 +13,7 @@ import {
   createSlice,
   SerializedError
 } from '@reduxjs/toolkit';
-import { TCard, TMenuItems } from '@utils-types';
+import { TCard } from '@utils-types';
 
 export const getCards = createAsyncThunk<TCard[], string>(
   'cards/getCards',

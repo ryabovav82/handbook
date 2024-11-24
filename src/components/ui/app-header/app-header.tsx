@@ -10,7 +10,13 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
     <div className={styles.header_content}>
       <Link to='/' className={styles.link_logo}>
         {' '}
-        <p className={styles.logo}>LOGO</p>
+        <div className={styles.logo}>
+          <img
+            className={styles.logo_img}
+            src={require('/public/images/logo.png')}
+            alt='logo'
+          />
+        </div>
       </Link>
       <form action='' method='get' className={styles.form}>
         <input

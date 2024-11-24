@@ -12,6 +12,7 @@
     min-height: 30px; 
     padding: 10px;
     transition: background-color 0.3s ease; 
+    min-width: 310px;
   }
   
   .card:hover {
@@ -31,3 +32,9 @@
     margin: 0;
     text-align: center;
   }
+
+  @media screen and (max-width: 768px) {
+    .card {
+        width: 50%;
+ }
+}
