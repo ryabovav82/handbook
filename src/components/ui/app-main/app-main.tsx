@@ -15,7 +15,7 @@ export const AppMainUI: FC<ICardProps> = ({
   text
 }) => {
   const isSelected = true; //при выбранном пункте меню useSelector(state => state.slice.isSelected) В логику потом
-  const isAuthenticated = false; //useSelector(state => state.auth.isAuthenticated); В логику потом
+  const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated); В логику потом
 
   const [editedText, setEditedText] = useState(text);
   const [editedImage, setEditedImage] = useState(image);
@@ -121,7 +121,7 @@ export const AppMainUI: FC<ICardProps> = ({
         {/* TODO: вывести ВСЕ карточки */}
 
         {/* Карточка добавления */}
-        {isAuthenticated && (
+        {isAuthenticated && isSelected && (
           <div className={styles.main_cards_add}>
             <div
               className={styles.main_cards_add_icon}
