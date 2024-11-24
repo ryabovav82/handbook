@@ -6,6 +6,17 @@
     justify-content: center;
 }
 
+@media screen and (max-width: 768px) {
+    .footer {
+      width: 768px;
+     }
+  }
+@media screen and (max-width: 370px) {
+    .footer {
+      width: 350px;
+     }
+  }
+
 .footer_content {
     color: #BFC0C0;
     padding-right: 40px;

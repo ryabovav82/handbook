@@ -1,0 +1,206 @@
+.main{
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: top;
+overflow: hidden;
+background-color: #2D3142;
+overflow-y: auto;
+scrollbar-color: #4F5D75 #f7f7f8;
+scrollbar-width: thin;
+}
+
+.main_base {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_base_img {
+    height: 100%;
+}
+
+
+@media screen and (max-width: 370px) {
+    .main_base {
+        width: 350px;
+ }
+}
+
+@media screen and (max-width: 768px) {
+    .main_base {
+        width: 768px;
+ }
+}
+
+.main_cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.main_cards_add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align-self: center; */
+    width: 340px;
+    height: 500px;
+    border: 2px dashed #ffffff; 
+    border-radius: 2%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    background-color: transparent;
+}
+
+.main_cards_add_icon_plus {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.main_cards_add_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    margin-top: 20px;
+    width: 60px;
+    height: 60px;
+    border: 2px dashed #fff; 
+    border-radius: 50%; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+
+  
+  .main_cards_add_icon:hover .main_cards_add_icon_plus {
+    color: #1c1c21;
+  }
+  .main_cards_add_icon:hover {
+    background-color: #f47c2b; 
+    border-color: #f47c2b;
+  }
+
+
+  .main_cards_card {
+    width: 340px;
+    height: 500px;
+    border: 2px solid #f7f7f8; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2%; 
+    background-color:#f7f7f8;
+}
+
+.main_cards_card_img {
+    width: 92%;
+    border-radius: 2%;
+    background-color: #fff;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 45%;
+}
+
+
+  .main_base_card_img {
+    width: 92%;
+    /* border-radius: 5%; */
+    height: 180px;
+  }
+
+  .main_base_card_text {
+    width: 92%;
+    border-radius: 2%;
+    background-color: #fff;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 50%;
+    overflow-y: auto;
+    scrollbar-color: #4F5D75 #f7f7f8;
+    scrollbar-width: thin;
+    font-family: 'IBM Plex mono', sans-serif;
+  }
+  .main_base_card_text_p {
+    width: 92%;
+    font-size: 0.8rem;
+    overflow-y: auto;
+  }
+
+  .main_base_card_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .main_base_card_button {
+    width: 115px;
+    background-color: #4F5D75;
+    color: #fff;
+    border: 2px solid #4F5D75;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:  0.3s ease;
+    margin: 15px;
+  }
+  .main_base_card_button_save {
+    width: 115px;
+    background-color: #f47c2b;
+    color: #fff;
+    border: 2px solid #f47c2b;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:  0.3s ease;
+    margin: 15px;
+  }
+
+  .main_base_card_button:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
+    border: 2px solid #BFC0C0;
+  }
+
+  .main_base_card_button_save:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
+    border: 2px solid #BFC0C0;
+  }
+ 
+  .main_base_card_img_input {
+    width: 92%;
+    background-color: #fff;
+    margin-top: 10px;
+  }
+
+  .main_base_card_text_input {
+    width: 100%;
+    height: 95%;
+    border: none;
+  }
+
+  .main_base_card_text_input:focus {
+    outline: none;
+    scrollbar-color: #4F5D75 #f7f7f8;
+    scrollbar-width: thin;
+  }
