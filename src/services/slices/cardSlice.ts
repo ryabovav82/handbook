@@ -1,14 +1,55 @@
-import { getCardsApi, getMenuItemsApi } from '../../utils/handbook-api';
+import {
+  addCardApi,
+  addMenuItemApi,
+  changeCardTextApi,
+  changeMenuItemApi,
+  delCardApi,
+  delMenuItemApi,
+  getCardsApi,
+  getMenuItemsApi
+} from '../../utils/handbook-api';
 import {
   createAsyncThunk,
   createSlice,
   SerializedError
 } from '@reduxjs/toolkit';
-import { TCard } from '@utils-types';
+import { TCard, TMenuItems } from '@utils-types';
 
 export const getCards = createAsyncThunk<TCard[], string>(
   'cards/getCards',
-  async (id: string): Promise<TCard[]> => await getCardsApi(id)
+  async (menuItemId: string): Promise<TCard[]> => await getCardsApi(menuItemId)
+);
+
+export const addCard = createAsyncThunk<TCard, { addCard: TCard }>(
+  'cards/addCard',
+  async ({ addCard }: { addCard: TCard }): Promise<TCard> =>
+    await addCardApi(addCard)
+);
+
+export const delCard = createAsyncThunk<
+  TCard,
+  { menuItemId: string; id: string }
+>(
+  'cards/delCard',
+  async ({
+    menuItemId, // Исправлено название переменной
+    id
+  }: {
+    menuItemId: string; // Исправлено название переменной
+    id: string;
+  }): Promise<TCard> => await delCardApi(menuItemId, id)
+);
+
+export const changeCardText = createAsyncThunk<
+  TCard,
+  { menuItemId: string; id: string; text: string }
+>(
+  'cards/changeCard',
+  async (data: {
+    menuItemId: string;
+    id: string;
+    text: string;
+  }): Promise<TCard> => await changeCardTextApi(data)
 );
 
 type TCardsState = {
