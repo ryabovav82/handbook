@@ -2,7 +2,8 @@ import React, { FC, ChangeEvent } from 'react';
 import styles from './app-main.module.css';
 import { ICardProps } from 'src/components/app-main/app-main';
 import { useState } from 'react';
-import { useDispatch } from 'src/services/store';
+import { useDispatch, useSelector } from 'src/services/store';
+import { rootReducer } from 'src/services/store';
 
 // export const AppMainUI: FC = () => <main>Main</main>;
 
@@ -18,6 +19,21 @@ export const AppMainUI: FC<ICardProps> = ({
 
   const [editedText, setEditedText] = useState(text);
   const [editedImage, setEditedImage] = useState(image);
+
+  // Открытие пустого компанента для добавления карточки
+  const openEmptyCard = (emptyCard: ICardProps) => {
+    const newCard: ICardProps = {
+      id: Date.now(),
+      menuItemId: 1,
+      serialNumber: 1,
+      image: '',
+      text: ''
+    };
+    setEditedText(newCard.text);
+    setEditedImage(newCard.image);
+
+    // TODO:логика открытия пустого компонента для заполнения в ДОБАВЛЕНИЕ к карточкам сервера, написать
+  };
 
   const handleSave = () => {
     // логика сохранения
@@ -55,9 +71,19 @@ export const AppMainUI: FC<ICardProps> = ({
                 {isAuthenticated && (
                   <input
                     className={styles.main_base_card_img_input}
-                    type='text'
-                    value={editedImage}
-                    onChange={(e) => setEditedImage(e.target.value)}
+                    type='file'
+                    accept='image/*'
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                          const imageUrl = reader.result as string;
+                          setEditedImage(imageUrl);
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }}
                   />
                 )}
               </div>
@@ -92,17 +118,24 @@ export const AppMainUI: FC<ICardProps> = ({
           </div>
         )}
 
-        {/* Тут вывод  потом сделать...   
-//             <>
-//                 {data.map((card: ICardProps) => (
-//                 <Card key={card.id} {...card} />
-//                 ))}
-//             </> */}
+        {/* TODO: вывести ВСЕ карточки */}
 
         {/* Карточка добавления */}
         {isAuthenticated && (
           <div className={styles.main_cards_add}>
-            <div className={styles.main_cards_add_icon} onClick={() => {}}>
+            <div
+              className={styles.main_cards_add_icon}
+              onClick={() => {
+                const emptyCard: ICardProps = {
+                  id: Date.now(),
+                  menuItemId: 1,
+                  serialNumber: 1,
+                  image: '',
+                  text: ''
+                };
+                openEmptyCard(emptyCard);
+              }}
+            >
               <span className={styles.main_cards_add_icon_plus}>+</span>
             </div>
           </div>

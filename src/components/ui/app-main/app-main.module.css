@@ -151,6 +151,7 @@ scrollbar-width: thin;
   }
 
   .main_base_card_button {
+    width: 115px;
     background-color: #4F5D75;
     color: #fff;
     border: 2px solid #4F5D75;
@@ -162,6 +163,7 @@ scrollbar-width: thin;
     margin: 15px;
   }
   .main_base_card_button_save {
+    width: 115px;
     background-color: #f47c2b;
     color: #fff;
     border: 2px solid #f47c2b;
@@ -186,14 +188,9 @@ scrollbar-width: thin;
   }
  
   .main_base_card_img_input {
-    width: 90%;
-    background-color: #f7f7f8;
+    width: 92%;
+    background-color: #fff;
     margin-top: 10px;
-  }
-
-  .main_base_card_img_input:focus {
-    border: none;
-    outline: 2px solid #f47c2b;
   }
 
   .main_base_card_text_input {
