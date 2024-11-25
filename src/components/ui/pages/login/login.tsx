@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import styles from './login.module.css';
+import { Link } from 'react-router-dom';
 export const LoginUI: FC = () => (
   <div className={styles.container}>
     <h1 className={styles.title}>Вход</h1>
@@ -10,6 +11,8 @@ export const LoginUI: FC = () => (
         Войти
       </button>
     </form>
-    <button className={styles.registerButton}>Зарегистрироваться</button>
+    <Link to='/register'>
+      <button className={styles.registerButton}>Зарегистрироваться</button>
+    </Link>
   </div>
 );
