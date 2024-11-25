@@ -15,6 +15,7 @@ scrollbar-width: thin;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: visible;
 }
 
 .main_base_img {
