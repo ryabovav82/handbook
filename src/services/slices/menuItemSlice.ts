@@ -1,4 +1,9 @@
-import { getMenuItemsApi } from '../../utils/handbook-api';
+import {
+  addMenuItemApi,
+  changeMenuItemApi,
+  delMenuItemApi,
+  getMenuItemsApi
+} from '../../utils/handbook-api';
 import {
   createAsyncThunk,
   createSlice,
@@ -9,6 +14,25 @@ import { TMenuItems } from '@utils-types';
 export const getMenuItems = createAsyncThunk<TMenuItems[], void>(
   'menuItems/getMenuItems',
   async (): Promise<TMenuItems[]> => await getMenuItemsApi()
+);
+
+export const addMenuItems = createAsyncThunk<TMenuItems, TMenuItems>(
+  'menuItems/addMenuItems',
+  async (data: TMenuItems): Promise<TMenuItems> => await addMenuItemApi(data)
+);
+
+export const delMenuItem = createAsyncThunk<TMenuItems, string>(
+  'menuItems/delMenuItem',
+  async (id: string): Promise<TMenuItems> => await delMenuItemApi(id)
+);
+
+export const changeMenuItem = createAsyncThunk<
+  TMenuItems,
+  { id: string; name: string }
+>(
+  'menuItems/changeMenuItem',
+  async (data: { id: string; name: string }): Promise<TMenuItems> =>
+    await changeMenuItemApi(data)
 );
 
 type TMenuItemsState = {
@@ -29,18 +53,15 @@ export const menuItemsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getMenuItems.pending, (state, action) => {
-        console.log('etMenuItems - pending');
         state.isLoading = true;
         state.error = null;
       })
       .addCase(getMenuItems.fulfilled, (state, action) => {
-        console.log('getMenuItems - fulfilled');
         state.isLoading = false;
         state.error = null;
         state.data = action.payload;
       })
       .addCase(getMenuItems.rejected, (state, action) => {
-        console.log('getMenuItems - error');
         state.isLoading = false;
         state.error = action.error;
       });

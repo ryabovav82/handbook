@@ -1,4 +1,9 @@
-import { getMenuItemsApi } from '../../utils/handbook-api';
+import {
+  addFaqItemApi,
+  changeFaqItemApi,
+  delFaqItemApi,
+  getFaqItemsApi
+} from '../../utils/handbook-api';
 import {
   createAsyncThunk,
   createSlice,
@@ -7,16 +12,35 @@ import {
 import { TFaqItems } from '@utils-types';
 
 export const getFaqItems = createAsyncThunk<TFaqItems[], void>(
-  'ingredients/getIngredient',
-  async (): Promise<TFaqItems[]> => await getMenuItemsApi()
+  'faqItems/getFaqItems',
+  async (): Promise<TFaqItems[]> => await getFaqItemsApi()
 );
 
-type TMenuItemsState = {
+export const addFaqItem = createAsyncThunk<TFaqItems, TFaqItems>(
+  'faqItems/addFaqItem',
+  async (data: TFaqItems): Promise<TFaqItems> => await addFaqItemApi(data)
+);
+
+export const delFaqItem = createAsyncThunk<TFaqItems, string>(
+  'faqItems/delFaqItem',
+  async (id: string): Promise<TFaqItems> => await delFaqItemApi(id)
+);
+
+export const changeFaqItem = createAsyncThunk<
+  TFaqItems,
+  { id: string; name: string }
+>(
+  'faqItems/changeFaqItem',
+  async (data: { id: string; name: string }): Promise<TFaqItems> =>
+    await changeFaqItemApi(data)
+);
+
+type TFaqItemsState = {
   isLoading: boolean;
   error: null | SerializedError;
   data: TFaqItems[];
 };
-const initialState: TMenuItemsState = {
+const initialState: TFaqItemsState = {
   isLoading: true,
   error: null,
   data: []

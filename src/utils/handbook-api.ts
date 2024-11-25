@@ -1,5 +1,5 @@
 import { setCookie, getCookie } from './cookie';
-import { TUser } from '@utils-types';
+import { TCard, TFaqItems, TMenuItems, TUser } from '@utils-types';
 
 // const URL = process.env.BURGER_API_URL;
 const URLDB = 'http://localhost:3001';
@@ -58,28 +58,20 @@ export const fetchWithRefresh = async <T>(
     }
   }
 };
-//Получаем все menuItem c cards
-// export const getMenuItemsApi = () =>
-//   fetch(`${URLDB}/menuItem`)
-//     .then((res) => checkResponse<any>(res))
-//     .then((data) => {
-//       if (data?.success) return data.data;
-//       return Promise.reject(data);
-//     });
-
+//Получаем menuItem
 export const getMenuItemsApi = () =>
   fetch(`${URLDB}/menuitem`)
     .then((res) => res.json())
     .then((data) => data);
 
-export const getCardsApi = (id: string) =>
-  fetch(`${URLDB}/menuitem/card/${id}`)
-    .then((res) => res.json())
-    .then((data) => data);
-
-//Получаем все faqItem
-export const getFaqItemsApi = () =>
-  fetch(`${URLDB}/faqitem`)
+//Удаляем MenuItems
+export const delMenuItemApi = (id: string) =>
+  fetch(`${URLDB}/menuitem/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  })
     .then((res) => checkResponse<any>(res))
     .then((data) => {
       if (data?.success) return data;
@@ -87,7 +79,7 @@ export const getFaqItemsApi = () =>
     });
 
 //Добавление menuItem
-export const addMenuItemApi = (data: any) =>
+export const addMenuItemApi = (data: TMenuItems) =>
   fetch(`${URLDB}/menuitem`, {
     method: 'POST',
     headers: {
@@ -101,14 +93,34 @@ export const addMenuItemApi = (data: any) =>
       return Promise.reject(data);
     });
 
-//Добавление card
-export const addCardApi = (data: any) =>
-  fetch(`${URLDB}/menuitem/card`, {
-    method: 'POST',
+//Изменяем MenuItem
+export const changeMenuItemApi = (data: { id: string; name: string }) =>
+  fetch(`${URLDB}/menuitem/${data.id}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify({ name: data.name })
+  })
+    .then((res) => checkResponse<any>(res))
+    .then((data) => {
+      if (data?.success) return data;
+      return Promise.reject(data);
+    });
+
+//Получаем faqItem
+export const getFaqItemsApi = () =>
+  fetch(`${URLDB}/faqitem`)
+    .then((res) => res.json())
+    .then((data) => data);
+
+//Удаляем faqItems
+export const delFaqItemApi = (id: string) =>
+  fetch(`${URLDB}/faqitem/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
   })
     .then((res) => checkResponse<any>(res))
     .then((data) => {
@@ -117,39 +129,9 @@ export const addCardApi = (data: any) =>
     });
 
 //Добавление faqItem
-export const AddFaqItemApi = (data: any) =>
-  fetch(`${URLDB}/menuitem/card`, {
+export const addFaqItemApi = (data: TFaqItems) =>
+  fetch(`${URLDB}/faqitem`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify(data)
-  })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
-
-//Изменяем MenuItem
-export const changeMenuItemApi = (data: any) =>
-  fetch(`${URLDB}/menuitem:${data.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify(data)
-  })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
-
-//Изменяем Card
-export const changeCardApi = (data: any) =>
-  fetch(`${URLDB}/menuitem/card:${data.id}`, {
-    method: 'PUT',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
@@ -162,13 +144,13 @@ export const changeCardApi = (data: any) =>
     });
 
 //Изменяем faqItem
-export const changeFaqItemApi = (data: any) =>
-  fetch(`${URLDB}/faqitem:${data.id}`, {
+export const changeFaqItemApi = (data: { id: string; name: string }) =>
+  fetch(`${URLDB}/faqitem/${data.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify({ name: data.name })
   })
     .then((res) => checkResponse<any>(res))
     .then((data) => {
@@ -176,13 +158,20 @@ export const changeFaqItemApi = (data: any) =>
       return Promise.reject(data);
     });
 
-//Удаляем MenuItems
-export const delMenuItemApi = (data: any) =>
-  fetch(`${URLDB}/menuitem:${data.id}`, {
+//Получаем Cards
+export const getCardsApi = (id: string) =>
+  fetch(`${URLDB}/menuitem/card/${id}`)
+    .then((res) => res.json())
+    .then((data) => data);
+
+//Удаляем Card
+export const delCardApi = (menuItemId: string, id: string) =>
+  fetch(`${URLDB}/menuitem/card/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
-    }
+    },
+    body: JSON.stringify({ menuItemId: menuItemId })
   })
     .then((res) => checkResponse<any>(res))
     .then((data) => {
@@ -190,13 +179,19 @@ export const delMenuItemApi = (data: any) =>
       return Promise.reject(data);
     });
 
-//Удаляем MenuItems
-export const delCardApi = (data: any) =>
-  fetch(`${URLDB}/menuitem/card:${data.id}`, {
-    method: 'DELETE',
+//Добавление Card
+export const addCardApi = (data: TCard) =>
+  fetch(`${URLDB}/menuitem/card`, {
+    method: 'POST',
     headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    }
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      menuItemId: data.menuItemId,
+      serialNumber: data.serialNumber,
+      image: data.image,
+      text: data.text
+    })
   })
     .then((res) => checkResponse<any>(res))
     .then((data) => {
@@ -204,13 +199,18 @@ export const delCardApi = (data: any) =>
       return Promise.reject(data);
     });
 
-//Удаляем faqItem
-export const delFaqItemApi = (data: any) =>
-  fetch(`${URLDB}/faqitem:${data.id}`, {
-    method: 'DELETE',
+//Изменяем Card
+export const changeCardTextApi = (data: {
+  id: string;
+  menuItemId: string;
+  text: string;
+}) =>
+  fetch(`${URLDB}/menuitem/card/${data.id}`, {
+    method: 'PUT',
     headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    }
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ menuItemId: data.menuItemId, text: data.text })
   })
     .then((res) => checkResponse<any>(res))
     .then((data) => {

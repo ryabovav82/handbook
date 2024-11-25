@@ -1,15 +1,50 @@
-import { getCardsApi, getMenuItemsApi } from '../../utils/handbook-api';
+import {
+  addCardApi,
+  changeCardTextApi,
+  delCardApi,
+  getCardsApi
+} from '../../utils/handbook-api';
 import {
   createAsyncThunk,
   createSlice,
   SerializedError
 } from '@reduxjs/toolkit';
 import { TCard } from '@utils-types';
-import React from 'react';
 
 export const getCards = createAsyncThunk<TCard[], string>(
   'cards/getCards',
-  async (id: string): Promise<TCard[]> => await getCardsApi(id)
+  async (menuItemId: string): Promise<TCard[]> => await getCardsApi(menuItemId)
+);
+
+export const addCard = createAsyncThunk<TCard, TCard>(
+  'cards/addCard',
+  async (newCard: TCard): Promise<TCard> => await addCardApi(newCard)
+);
+
+export const delCard = createAsyncThunk<
+  TCard,
+  { menuItemId: string; id: string }
+>(
+  'cards/delCard',
+  async ({
+    menuItemId,
+    id
+  }: {
+    menuItemId: string;
+    id: string;
+  }): Promise<TCard> => await delCardApi(menuItemId, id)
+);
+
+export const changeCardText = createAsyncThunk<
+  TCard,
+  { menuItemId: string; id: string; text: string }
+>(
+  'cards/changeCard',
+  async (data: {
+    menuItemId: string;
+    id: string;
+    text: string;
+  }): Promise<TCard> => await changeCardTextApi(data)
 );
 
 type TCardsState = {
