@@ -1,12 +1,8 @@
 import {
   addCardApi,
-  addMenuItemApi,
   changeCardTextApi,
-  changeMenuItemApi,
   delCardApi,
-  delMenuItemApi,
-  getCardsApi,
-  getMenuItemsApi
+  getCardsApi
 } from '../../utils/handbook-api';
 import {
   createAsyncThunk,
@@ -20,10 +16,9 @@ export const getCards = createAsyncThunk<TCard[], string>(
   async (menuItemId: string): Promise<TCard[]> => await getCardsApi(menuItemId)
 );
 
-export const addCard = createAsyncThunk<TCard, { addCard: TCard }>(
+export const addCard = createAsyncThunk<TCard, TCard>(
   'cards/addCard',
-  async ({ addCard }: { addCard: TCard }): Promise<TCard> =>
-    await addCardApi(addCard)
+  async (newCard: TCard): Promise<TCard> => await addCardApi(newCard)
 );
 
 export const delCard = createAsyncThunk<
@@ -32,10 +27,10 @@ export const delCard = createAsyncThunk<
 >(
   'cards/delCard',
   async ({
-    menuItemId, // Исправлено название переменной
+    menuItemId,
     id
   }: {
-    menuItemId: string; // Исправлено название переменной
+    menuItemId: string;
     id: string;
   }): Promise<TCard> => await delCardApi(menuItemId, id)
 );

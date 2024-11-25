@@ -2,8 +2,7 @@ import React, { FC, ChangeEvent } from 'react';
 import styles from './app-main.module.css';
 import { ICardProps } from 'src/components/app-main/app-main';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'src/services/store';
-import { rootReducer } from 'src/services/store';
+import { TCard } from '@utils-types';
 
 // export const AppMainUI: FC = () => <main>Main</main>;
 
@@ -21,18 +20,18 @@ export const AppMainUI: FC<ICardProps> = ({
   const [editedImage, setEditedImage] = useState(image);
 
   // Открытие пустого компанента для добавления карточки
-  const openEmptyCard = (emptyCard: ICardProps) => {
-    const newCard: ICardProps = {
+  const openEmptyCard = (emptyCard: TCard) => {
+    const newCard: TCard = {
       id: Date.now(),
-      menuItemId: 1,
-      serialNumber: 1,
-      image: '',
-      text: ''
+      menuItemId: 2,
+      serialNumber: 34,
+      image: 'some image',
+      text: 'some text'
     };
     setEditedText(newCard.text);
     setEditedImage(newCard.image);
 
-    // TODO:логика открытия пустого компонента для заполнения в ДОБАВЛЕНИЕ к карточкам сервера, написать
+    // TODO:логика открытия пустого компонента для заполнения в ДОБАВЛЕНИЕ к карточкам сервера, написат
   };
 
   const handleSave = () => {

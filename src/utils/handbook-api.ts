@@ -184,9 +184,14 @@ export const addCardApi = (data: TCard) =>
   fetch(`${URLDB}/menuitem/card`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json;charset=utf-8'
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      menuItemId: data.menuItemId,
+      serialNumber: data.serialNumber,
+      image: data.image,
+      text: data.text
+    })
   })
     .then((res) => checkResponse<any>(res))
     .then((data) => {
@@ -200,10 +205,10 @@ export const changeCardTextApi = (data: {
   menuItemId: string;
   text: string;
 }) =>
-  fetch(`${URLDB}/menuitem/${data.id}`, {
+  fetch(`${URLDB}/menuitem/card/${data.id}`, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json;charset=utf-8'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({ menuItemId: data.menuItemId, text: data.text })
   })
