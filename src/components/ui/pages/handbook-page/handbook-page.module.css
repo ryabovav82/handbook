@@ -28,3 +28,28 @@
     }
   }
 
+  .main{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    overflow: hidden;
+    background-color: #2D3142;
+    overflow-y: auto;
+    scrollbar-color: #4F5D75 #f7f7f8;
+    scrollbar-width: thin;
+    }
+
+    .main_cards {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: top;
+      gap: 15px;
+      margin-top: 20px;
+      padding-bottom: 20px;
+  }
+
+
+
