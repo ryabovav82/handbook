@@ -1,7 +1,7 @@
-import { ICardProps } from 'src/components/main-cards/main-cards';
+// import { ICardProps } from 'src/components/main-cards/main-cards';
+import { TCard } from '@utils-types';
 export type HandbookPageUIProps = {
-  isCardsLoading: boolean;
+  // isCardsLoading: boolean;
   isSelected: boolean;
   isAuthenticated: boolean;
-  cardProps: ICardProps;
 };

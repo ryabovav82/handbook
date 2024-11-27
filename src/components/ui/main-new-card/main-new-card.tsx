@@ -1,9 +1,10 @@
 import React, { FC, ChangeEvent } from 'react';
 import styles from './main-new-card.module.css';
-import { ICardProps, MainCards } from 'src/components/main-cards/main-cards';
+import { MainCards } from 'src/components/main-cards/main-cards';
 import { useState } from 'react';
+import { TCard } from '@utils-types';
 
-export const MainNewCardUI: FC<ICardProps> = ({
+export const MainNewCardUI: FC<TCard> = ({
   id,
   menuItemId,
   serialNumber,
@@ -17,7 +18,7 @@ export const MainNewCardUI: FC<ICardProps> = ({
     menuItemId: '',
     serialNumber: '',
     image: 'image',
-    text: 'sometext'
+    text: 'some text'
   };
 
   const [editedText, setEditedText] = useState(testcard.text);
@@ -95,13 +96,13 @@ export const MainNewCardUI: FC<ICardProps> = ({
                 className={styles.main_base_card_button_save}
                 onClick={handleSave}
               >
-                Save
+                Сохранить
               </button>
               <button
                 className={styles.main_base_card_button}
                 onClick={handleDelete}
               >
-                Delete
+                Удалить
               </button>
             </div>
           )}
