@@ -1,21 +1,20 @@
 .containerMain {
     width: 100%;
     margin: 10px auto; 
-
+    max-height: 1320px;
   }
 .main_hp {
     display: grid;
     grid-template-columns: min-content 1fr;
     gap: 10px;
-    height: 100%;
     min-width: 768px;
-    /* justify-content: center; */
+    height: 100%;
   }
 
   @media screen and (max-width: 768px) {
     .main_hp {
       grid-template-columns: 768px;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: min-content 1fr;
       gap: 10px;
     }
   }
@@ -23,13 +22,13 @@
   @media screen and (max-width: 370px) {
     .main_hp {
       grid-template-columns: 350px;
-      /* grid-template-rows: 1fr 1fr; */
+      grid-template-rows: min-content 1fr;
       gap: 10px;
     }
   }
 
   .main{
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: top;
