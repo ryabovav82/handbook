@@ -9,9 +9,8 @@ import { HandbookPageUIProps } from './type';
 // TODO: возможно... реализовать потом на момент загрузки данных прелоадер, учлащая его в HandbookPageUIProps
 export const HandbookPageUI: FC<HandbookPageUIProps> = ({
   isSelected,
-  isCardsLoading,
-  isAuthenticated,
-  cardProps
+  // isCardsLoading,
+  isAuthenticated
 }) => (
   <main className={styles.containerMain}>
     <div className={styles.main_hp}>

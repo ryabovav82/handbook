@@ -1,17 +1,16 @@
 import React, { FC, ChangeEvent, useEffect } from 'react';
 import styles from './main-new-card.module.css';
-import { ICardProps, MainCards } from 'src/components/main-cards/main-cards';
+import { MainCards } from 'src/components/main-cards/main-cards';
 import { useState } from 'react';
-import { AppDispatch, useDispatch } from '../../../services/store';
 import {
   addMenuItems,
   changeMenuItem,
   delMenuItem,
   getMenuItems
 } from '../../../services/slices/menuItemSlice';
-import { TCard, TMenuItems } from '@utils-types';
+import { TCard } from '@utils-types';
 
-export const MainNewCardUI: FC<ICardProps> = ({
+export const MainNewCardUI: FC<TCard> = ({
   id,
   menuItemId,
   serialNumber,
@@ -19,7 +18,6 @@ export const MainNewCardUI: FC<ICardProps> = ({
   text
 }) => {
   const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
-  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     getMenuItems();
   }, []);
@@ -28,7 +26,7 @@ export const MainNewCardUI: FC<ICardProps> = ({
     menuItemId: '',
     serialNumber: '',
     image: 'image',
-    text: 'sometext'
+    text: 'some text'
   };
 
   const [editedText, setEditedText] = useState(testcard.text);
@@ -39,18 +37,6 @@ export const MainNewCardUI: FC<ICardProps> = ({
   const handleCreateNewCard = () => {
     setIsOpen(true);
   };
-  //----------------------------------------------------------------------------------------------------------------------------------
-  const handleAddIconClick = () => {
-    const data: TMenuItems = {
-      id: 77,
-      name: 'string',
-      cards: []
-    };
-    // setIsOpen(true);
-    // dispatch(changeMenuItem({ id: '1', name: 'new name' }));
-    dispatch(addMenuItems(data));
-  };
-
   const handleSave = () => {
     // Логика сохранения
     setIsOpen(false);
@@ -113,13 +99,13 @@ export const MainNewCardUI: FC<ICardProps> = ({
                 className={styles.main_base_card_button_save}
                 onClick={handleSave}
               >
-                Save
+                Сохранить
               </button>
               <button
                 className={styles.main_base_card_button}
                 onClick={handleDelete}
               >
-                Delete
+                Удалить
               </button>
             </div>
           )}
@@ -128,7 +114,7 @@ export const MainNewCardUI: FC<ICardProps> = ({
         <div className={styles.main_cards_add}>
           <div
             className={styles.main_cards_add_icon}
-            onClick={handleAddIconClick}
+            onClick={handleCreateNewCard}
           >
             <span className={styles.main_cards_add_icon_plus}>+</span>
           </div>
