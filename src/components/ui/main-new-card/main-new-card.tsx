@@ -1,7 +1,15 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent, useEffect } from 'react';
 import styles from './main-new-card.module.css';
 import { ICardProps, MainCards } from 'src/components/main-cards/main-cards';
 import { useState } from 'react';
+import { AppDispatch, useDispatch } from '../../../services/store';
+import {
+  addMenuItems,
+  changeMenuItem,
+  delMenuItem,
+  getMenuItems
+} from '../../../services/slices/menuItemSlice';
+import { TCard, TMenuItems } from '@utils-types';
 
 export const MainNewCardUI: FC<ICardProps> = ({
   id,
@@ -11,7 +19,10 @@ export const MainNewCardUI: FC<ICardProps> = ({
   text
 }) => {
   const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
-
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    getMenuItems();
+  }, []);
   const testcard = {
     id: '',
     menuItemId: '',
@@ -28,9 +39,16 @@ export const MainNewCardUI: FC<ICardProps> = ({
   const handleCreateNewCard = () => {
     setIsOpen(true);
   };
-
+  //----------------------------------------------------------------------------------------------------------------------------------
   const handleAddIconClick = () => {
-    setIsOpen(true);
+    const data: TMenuItems = {
+      id: 77,
+      name: 'string',
+      cards: []
+    };
+    // setIsOpen(true);
+    // dispatch(changeMenuItem({ id: '1', name: 'new name' }));
+    dispatch(addMenuItems(data));
   };
 
   const handleSave = () => {

@@ -76,6 +76,20 @@ export const cardsSlice = createSlice({
       .addCase(getCards.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
+      })
+      .addCase(addCard.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addCard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        // state.data = action.payload;
+        console.log(action.payload);
+      })
+      .addCase(addCard.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
       });
   }
 });

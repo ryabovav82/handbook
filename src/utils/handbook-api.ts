@@ -72,11 +72,8 @@ export const delMenuItemApi = (id: string) =>
       'Content-Type': 'application/json;charset=utf-8'
     }
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Добавление menuItem
 export const addMenuItemApi = (data: TMenuItems) =>
@@ -87,11 +84,8 @@ export const addMenuItemApi = (data: TMenuItems) =>
     },
     body: JSON.stringify(data)
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Изменяем MenuItem
 export const changeMenuItemApi = (data: { id: string; name: string }) =>
@@ -102,11 +96,8 @@ export const changeMenuItemApi = (data: { id: string; name: string }) =>
     },
     body: JSON.stringify({ name: data.name })
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Получаем faqItem
 export const getFaqItemsApi = () =>
