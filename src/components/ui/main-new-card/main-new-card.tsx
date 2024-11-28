@@ -1,6 +1,5 @@
 import React, { FC, ChangeEvent } from 'react';
 import styles from './main-new-card.module.css';
-import { MainCards } from 'src/components/main-cards/main-cards';
 import { useState } from 'react';
 import { TCard } from '@utils-types';
 import { addCard, delCard } from '../../../services/slices/cardSlice';
@@ -19,13 +18,12 @@ export const MainNewCardUI: FC<TCard> = ({
     id: '',
     menuItemId: '',
     serialNumber: '',
-    image: 'image',
-    text: 'some text'
+    image: '',
+    text: 'Напишите инструкцию'
   };
 
   const [editedText, setEditedText] = useState(testcard.text);
   const [editedImage, setEditedImage] = useState(testcard.image);
-  const [showAddButton, setShowAddButton] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -48,12 +46,7 @@ export const MainNewCardUI: FC<TCard> = ({
     };
 
     dispatch(addCard(newCard));
-    // .then(() => {
-    //   setShowAddButton(true);
-    // })
-    // .catch((error) => {
-    //   console.error("Ошибка при сохранении карточки:", error);
-    // });
+    window.location.reload(); //пока  поставила перезагрузку, но надо сделать так , чтобы без перезагрузки новое состояние наступало, пока не получается
   };
 
   const handleDelete = () => {
@@ -62,7 +55,7 @@ export const MainNewCardUI: FC<TCard> = ({
         setIsOpen(false); // Закрываем форму редактирования
       })
       .catch((error) => {
-        console.error('Ошибка при удалении карточки:', error);
+        console.error('Ошибка:', error);
       });
   };
 
@@ -132,7 +125,7 @@ export const MainNewCardUI: FC<TCard> = ({
       ) : null}
 
       {/* Отобразим кнопку добавления новой карточки */}
-      {(showAddButton || !isOpen) && (
+      {!isOpen && (
         <div className={styles.main_cards_add}>
           <div
             className={styles.main_cards_add_icon}
