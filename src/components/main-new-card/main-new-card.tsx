@@ -6,8 +6,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
 import { getCards } from '../../services/slices/cardSlice';
 
-// export const AppMain: FC = () => <AppMainUI />;
-
 export const MainNewCard: FC = () => {
   // пропсы для примера
   const cardProps: TCard = {

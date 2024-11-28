@@ -3,6 +3,8 @@ import styles from './main-new-card.module.css';
 import { MainCards } from 'src/components/main-cards/main-cards';
 import { useState } from 'react';
 import { TCard } from '@utils-types';
+import { addCard, delCard } from '../../../services/slices/cardSlice';
+import { useDispatch } from '../../../services/store';
 
 export const MainNewCardUI: FC<TCard> = ({
   id,
@@ -23,8 +25,10 @@ export const MainNewCardUI: FC<TCard> = ({
 
   const [editedText, setEditedText] = useState(testcard.text);
   const [editedImage, setEditedImage] = useState(testcard.image);
+  const [showAddButton, setShowAddButton] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleCreateNewCard = () => {
     setIsOpen(true);
@@ -35,13 +39,31 @@ export const MainNewCardUI: FC<TCard> = ({
   };
 
   const handleSave = () => {
-    // Логика сохранения
-    setIsOpen(false);
+    const newCard: TCard = {
+      id: id,
+      menuItemId: 1, //Заглушка
+      serialNumber: 1, //Заглушка
+      image: editedImage,
+      text: editedText
+    };
+
+    dispatch(addCard(newCard));
+    // .then(() => {
+    //   setShowAddButton(true);
+    // })
+    // .catch((error) => {
+    //   console.error("Ошибка при сохранении карточки:", error);
+    // });
   };
 
   const handleDelete = () => {
-    // Логика удаления
-    setIsOpen(false);
+    dispatch(delCard({ menuItemId, id }))
+      .then(() => {
+        setIsOpen(false); // Закрываем форму редактирования
+      })
+      .catch((error) => {
+        console.error('Ошибка при удалении карточки:', error);
+      });
   };
 
   return (
@@ -107,7 +129,10 @@ export const MainNewCardUI: FC<TCard> = ({
             </div>
           )}
         </div>
-      ) : (
+      ) : null}
+
+      {/* Отобразим кнопку добавления новой карточки */}
+      {(showAddButton || !isOpen) && (
         <div className={styles.main_cards_add}>
           <div
             className={styles.main_cards_add_icon}

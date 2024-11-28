@@ -19,7 +19,7 @@ export const MainCards = () => {
 
   // Пока заглушку поставила
   useEffect(() => {
-    dispatch(getCards('1'));
+    dispatch(getCards(1));
   }, [dispatch]);
 
   if (isLoading) {
