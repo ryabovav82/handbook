@@ -1,0 +1,103 @@
+.header {
+    background-color: #2D3142;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header_content {
+    display: grid;
+    grid-template-columns: min-content 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 0 40px;
+    width: 100%;
+    font-family: 'IBM Plex mono', sans-serif;
+  }
+
+@media screen and (max-width: 768px) {
+.header_content {
+    grid-template-columns: min-content;
+    grid-template-rows: repeat(2, min-content);
+    gap: 0px;
+    padding: 0 20px;
+}
+
+.header {
+  width: 768px;
+ }
+  }
+
+  @media screen and (max-width: 370px) {
+    .header {
+      width: 350px;
+     }
+  }
+
+
+  .logo {
+  }
+
+  .logo_img {
+    height: 25px;
+    margin: 20px 0;
+  }
+
+  .menu {
+    display: flex;
+    justify-self: end;
+    align-self: center;
+    gap: 15px;
+  }
+
+  .link {
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  .link:hover {
+    text-decoration: underline #BFC0C0;
+    text-underline-offset: 3px;
+    color: #BFC0C0;
+  }
+
+  .link:focus {
+    color: #EF8354;
+    font-weight: 700;
+  }
+
+  .form {
+    display: flex;
+    justify-self: center;
+    width: 100%;
+  }
+
+  .input {
+    width: 100%;
+    border-radius: 1px;
+    border: 1px solid #ffffff;
+  }
+
+  .input:focus {
+    outline: none;
+    border-radius: 1px;
+    border: 1px solid #EF8354;
+    color: #2D3142;
+  }
+
+  .button {
+    background-color: #EF8354;
+    border-radius: 1px;
+    border: 1px solid #EF8354;
+    color: #fff;
+    cursor: pointer;
+  }
+  .button:hover {
+    background-color: #BFC0C0;
+    border: 1px solid #BFC0C0;
+  }
+
+  .link_logo {
+    position: relative ;
+  }

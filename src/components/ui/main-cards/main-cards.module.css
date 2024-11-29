@@ -1,0 +1,123 @@
+
+.main_cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
+    gap: 15px;
+    padding-bottom: 20px;
+}
+  .main_cards_card {
+    width: 340px;
+    height: 500px;
+    border: 2px solid #f7f7f8; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2%; 
+    background-color:#f7f7f8;
+}
+
+.main_cards_card_img {
+    width: 92%;
+    border-radius: 2%;
+    background-color: #fff;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 45%;
+}
+
+
+  .main_base_card_img {
+    width: 92%;
+    /* border-radius: 5%; */
+    height: 180px;
+  }
+
+  .main_base_card_text {
+    width: 92%;
+    border-radius: 2%;
+    background-color: #fff;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 50%;
+    overflow-y: auto;
+    scrollbar-color: #4F5D75 #f7f7f8;
+    scrollbar-width: thin;
+    font-family: 'IBM Plex mono', sans-serif;
+  }
+  .main_base_card_text_p {
+    width: 92%;
+    font-size: 0.8rem;
+    overflow-y: auto;
+  }
+
+  .main_base_card_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .main_base_card_button {
+    width: 115px;
+    background-color: #4F5D75;
+    color: #fff;
+    border: 2px solid #4F5D75;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:  0.3s ease;
+    margin: 15px;
+  }
+  .main_base_card_button_save {
+    width: 115px;
+    background-color: #f47c2b;
+    color: #fff;
+    border: 2px solid #f47c2b;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:  0.3s ease;
+    margin: 15px;
+  }
+
+  .main_base_card_button:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
+    border: 2px solid #BFC0C0;
+  }
+
+  .main_base_card_button_save:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
+    border: 2px solid #BFC0C0;
+  }
+ 
+  .main_base_card_img_input {
+    width: 92%;
+    background-color: #fff;
+    margin-top: 10px;
+  }
+
+  .main_base_card_text_input {
+    width: 100%;
+    height: 95%;
+    border: none;
+  }
+
+  .main_base_card_text_input:focus {
+    outline: none;
+    scrollbar-color: #4F5D75 #f7f7f8;
+    scrollbar-width: thin;
+  }
