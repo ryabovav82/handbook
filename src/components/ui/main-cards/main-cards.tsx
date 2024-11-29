@@ -28,6 +28,19 @@ export const MainCardsUI: FC<TCard> = ({
     setIsVisible(false);
   };
 
+  // Загрузка изображений на сервер пока не работает
+  const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result as string;
+        setEditedImage(imageUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <>
       {isVisible && (
@@ -43,17 +56,7 @@ export const MainCardsUI: FC<TCard> = ({
                 className={styles.main_base_card_img_input}
                 type='file'
                 accept='image/*'
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                      const imageUrl = reader.result as string;
-                      setEditedImage(imageUrl);
-                    };
-                    reader.readAsDataURL(file);
-                  }
-                }}
+                onChange={handleChangeImage}
               />
             )}
           </div>
