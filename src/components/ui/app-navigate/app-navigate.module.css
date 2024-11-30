@@ -1,22 +1,22 @@
 .navigate {
-  width: 350px;
-  /* height: 100vh; */
-  height: 100%; 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+  justify-content: space-between;
   align-items: center;
+  height: 100%;
+  width: 350px;
   background-color: #2d3142;
   padding: 20px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  scrollbar-color: #4f5d75 #f7f7f8;
-  scrollbar-width: thin;
 }
 
-.navigate > * {
-  margin-bottom: 10px;
+.navigate > .cardList {
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-color: #4f5d75 #f7f7f8;
+  scrollbar-width: thin;
 }
 
 .addCard {
@@ -55,12 +55,13 @@
 @media screen and (max-width: 768px) {
   .navigate {
     width: 768px;
-    height: min-content;
+    height: 100%;
   }
 }
+
 @media screen and (max-width: 370px) {
   .navigate {
     width: 350px;
-    height: min-content;
+    height: 100%;
   }
 }
