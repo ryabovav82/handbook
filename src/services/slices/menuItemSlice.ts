@@ -67,6 +67,25 @@ export const menuItemsSlice = createSlice({
       .addCase(getMenuItems.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
+      })
+      // добавления карточки
+      .addCase(addMenuItems.fulfilled, (state, action) => {
+        const updatedMenuItems = state.data.map((menuItem) => {
+          if (menuItem.id === action.payload.id) {
+            return {
+              ...menuItem,
+              cards: [...menuItem.cards, ...action.payload.cards]
+            };
+          }
+          return menuItem;
+        });
+        state.data = updatedMenuItems;
+        state.data.push(action.payload);
+      })
+      .addCase(delMenuItem.fulfilled, (state, action) => {
+        state.data = state.data.filter(
+          (menuItem) => menuItem.id !== action.payload.id
+        );
       });
   }
 });
