@@ -5,7 +5,7 @@ import styles from './navigate-card.module.css';
 interface CardProps {
   content: string;
   to: string;
-  onDelete: () => void; // Пропс для удаления
+  onDelete: () => void;
 }
 
 export const NavigateCardUI: FC<CardProps> = memo(
@@ -14,16 +14,14 @@ export const NavigateCardUI: FC<CardProps> = memo(
 
     const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
-    // Функция для закрытия меню после взаимодействия
     const handleDelete = () => {
       onDelete();
-      setMenuOpen(false); // Закрыть меню
+      setMenuOpen(false);
     };
 
     const handleEdit = () => {
-      // Добавьте логику редактирования, если потребуется
       console.log('Редактировать');
-      setMenuOpen(false); // Закрыть меню
+      setMenuOpen(false);
     };
 
     return (

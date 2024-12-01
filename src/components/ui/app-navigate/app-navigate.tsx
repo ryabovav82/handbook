@@ -6,7 +6,7 @@ import { CardProps } from 'src/components/app-navigate/app-navigate';
 interface AppNavigateUIProps {
   cards: CardProps[];
   onAddCard?: () => void;
-  onDeleteCard: (id: string) => void; // Пропс для удаления карточки
+  onDeleteCard: (id: string) => void;
 }
 
 export const AppNavigateUI: FC<AppNavigateUIProps> = ({
@@ -21,7 +21,7 @@ export const AppNavigateUI: FC<AppNavigateUIProps> = ({
           key={card._id}
           to={card.to}
           content={card.content}
-          onDelete={() => onDeleteCard(card._id)} // Привязка удаления
+          onDelete={() => onDeleteCard(card._id)}
         />
       ))}
     </div>

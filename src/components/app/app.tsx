@@ -16,9 +16,7 @@ const App = () => {
   return (
     <div className={styles.app}>
       <AppHeader />
-      {/* {!shouldHideNavigate && <AppNavigate />} */}
       <Routes>
-        {/* <Route path='/' element={<AppMain />} /> */}
         <Route path='/' element={!shouldHideNavigate && <HandbookPage />} />
 
         <Route path='/faq' element={<h1>FAQ Page</h1>} />

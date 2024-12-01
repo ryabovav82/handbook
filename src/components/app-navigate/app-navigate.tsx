@@ -14,7 +14,11 @@ export interface CardProps {
   to: string;
 }
 
-export const AppNavigate: FC = memo(() => {
+interface AppNavigateProps {
+  onCardSelect: (id: string) => void;
+}
+
+export const AppNavigate: FC<AppNavigateProps> = memo(({ onCardSelect }) => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -52,7 +56,7 @@ export const AppNavigate: FC = memo(() => {
   }
 
   const onDeleteCard = (id: string) => {
-    dispatch(delMenuItem(id)); // Удаление карточки
+    dispatch(delMenuItem(id));
   };
 
   return (
