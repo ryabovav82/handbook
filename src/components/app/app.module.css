@@ -1,9 +1,8 @@
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #ffffff;
-  color: #000000;
 }
 
 ::-webkit-scrollbar {
@@ -22,13 +21,15 @@
 .mainContent {
   display: flex;
   flex: 1;
+  overflow: hidden;
 }
+
 
 .pageContent {
   flex: 1;
+  overflow-y: auto;
   padding: 20px;
   background-color: #f7f7f7;
-  overflow-y: auto;
 }
 
 .cardDetails {

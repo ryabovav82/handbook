@@ -68,45 +68,24 @@ export const menuItemsSlice = createSlice({
         state.isLoading = false;
         state.error = action.error;
       })
-      .addCase(addMenuItems.pending, (state, action) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+      // добавления карточки
       .addCase(addMenuItems.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
+        const updatedMenuItems = state.data.map((menuItem) => {
+          if (menuItem.id === action.payload.id) {
+            return {
+              ...menuItem,
+              cards: [...menuItem.cards, ...action.payload.cards]
+            };
+          }
+          return menuItem;
+        });
+        state.data = updatedMenuItems;
         state.data.push(action.payload);
-        console.log(JSON.stringify(state.data));
       })
-      .addCase(addMenuItems.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error;
-      })
-      .addCase(changeMenuItem.pending, (state, action) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(changeMenuItem.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        console.log(JSON.stringify(state.data));
-        const foundMenuItem = state.data.find(
-          (item) =>
-            // console.log(typeof action.payload.id);
-            // console.log(typeof item.id);
-            action.payload.id === item.id
+      .addCase(delMenuItem.fulfilled, (state, action) => {
+        state.data = state.data.filter(
+          (menuItem) => menuItem.id !== action.payload.id
         );
-        if (!foundMenuItem) {
-          console.log('not find');
-        } else {
-          foundMenuItem.name = action.payload.name;
-          console.log(foundMenuItem);
-        }
-      })
-      .addCase(changeMenuItem.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error;
-        console.log(state.error);
       });
   }
 });

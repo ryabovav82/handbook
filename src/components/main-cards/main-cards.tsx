@@ -7,7 +7,11 @@ import { getCards } from '../../services/slices/cardSlice';
 import { TCard } from '@utils-types';
 import { AppNavigate } from '../../components/app-navigate';
 
-export const MainCards = () => {
+interface MainCardsProps {
+  cardId: string | null;
+}
+
+export const MainCards: FC<MainCardsProps> = ({ cardId }) => {
   const dispatch = useDispatch();
   const { data, isLoading, error } = useSelector((state) => state.cardReducer);
 
