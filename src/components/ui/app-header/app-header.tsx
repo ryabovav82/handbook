@@ -9,7 +9,6 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
   <header className={styles.header}>
     <div className={styles.header_content}>
       <Link to='/' className={styles.link_logo}>
-        {' '}
         <div className={styles.logo}>
           <img
             className={styles.logo_img}

@@ -1,6 +1,5 @@
 import React, { FC, ChangeEvent, useEffect } from 'react';
 import styles from './main-new-card.module.css';
-import { MainCards } from 'src/components/main-cards/main-cards';
 import { useState } from 'react';
 import {
   addMenuItems,
@@ -9,6 +8,8 @@ import {
   getMenuItems
 } from '../../../services/slices/menuItemSlice';
 import { TCard } from '@utils-types';
+import { addCard, delCard } from '../../../services/slices/cardSlice';
+import { useDispatch } from '../../../services/store';
 
 export const MainNewCardUI: FC<TCard> = ({
   id,
@@ -25,26 +26,52 @@ export const MainNewCardUI: FC<TCard> = ({
     id: '',
     menuItemId: '',
     serialNumber: '',
-    image: 'image',
-    text: 'some text'
+    image: '',
+    text: 'Напишите инструкцию'
   };
 
   const [editedText, setEditedText] = useState(testcard.text);
   const [editedImage, setEditedImage] = useState(testcard.image);
 
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleCreateNewCard = () => {
     setIsOpen(true);
   };
   const handleSave = () => {
-    // Логика сохранения
-    setIsOpen(false);
+    const newCard: TCard = {
+      id: id,
+      menuItemId: 1, //Заглушка
+      serialNumber: 1, //Заглушка
+      image: editedImage,
+      text: editedText
+    };
+
+    dispatch(addCard(newCard));
+    window.location.reload(); //пока  поставила перезагрузку, но надо сделать так , чтобы без перезагрузки новое состояние наступало, пока не получается
   };
 
   const handleDelete = () => {
-    // Логика удаления
-    setIsOpen(false);
+    dispatch(delCard({ menuItemId, id }))
+      .then(() => {
+        setIsOpen(false); // Закрываем форму редактирования
+      })
+      .catch((error) => {
+        console.error('Ошибка:', error);
+      });
+  };
+  // Загрузка изображений на сервер пока не работает
+  const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result as string;
+        setEditedImage(imageUrl);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -66,17 +93,7 @@ export const MainNewCardUI: FC<TCard> = ({
                 className={styles.main_base_card_img_input}
                 type='file'
                 accept='image/*'
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                      const imageUrl = reader.result as string;
-                      setEditedImage(imageUrl);
-                    };
-                    reader.readAsDataURL(file);
-                  }
-                }}
+                onChange={handleChangeImage}
               />
             )}
           </div>
@@ -110,7 +127,10 @@ export const MainNewCardUI: FC<TCard> = ({
             </div>
           )}
         </div>
-      ) : (
+      ) : null}
+
+      {/* Отобразим кнопку добавления новой карточки */}
+      {!isOpen && (
         <div className={styles.main_cards_add}>
           <div
             className={styles.main_cards_add_icon}
