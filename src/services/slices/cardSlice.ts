@@ -1,5 +1,6 @@
 import {
   addCardApi,
+  changeCardImageApi,
   changeCardTextApi,
   delCardApi,
   getCardsApi
@@ -47,6 +48,20 @@ export const changeCardText = createAsyncThunk<
   }): Promise<TCard> => await changeCardTextApi(data)
 );
 
+export const changeCardImage = createAsyncThunk<
+  any,
+  { imageName: string; imageFile: File }
+>(
+  'cards/changeCardImage',
+  async ({
+    imageName,
+    imageFile
+  }: {
+    imageName: string;
+    imageFile: File;
+  }): Promise<any> => await changeCardImageApi({ imageName, imageFile })
+);
+
 type TCardsState = {
   isLoading: boolean;
   error: null | SerializedError;
@@ -74,6 +89,37 @@ export const cardsSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(getCards.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(addCard.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addCard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.data.push(action.payload);
+      })
+      .addCase(addCard.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(changeCardText.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(changeCardText.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const findCard = state.data.find(
+          (item) => item.id === action.payload.id
+        );
+        if (findCard) {
+          findCard.image = `http://localhost:3001/menuitem/card/images/${action.payload.id}.jpg`;
+        }
+      })
+      .addCase(changeCardText.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
       });

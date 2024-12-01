@@ -2,7 +2,7 @@ import { setCookie, getCookie } from './cookie';
 import { TCard, TFaqItems, TMenuItems, TUser } from '@utils-types';
 
 // const URL = process.env.BURGER_API_URL;
-const URLDB = 'http://localhost:3001';
+export const URLDB = 'http://localhost:3001';
 const URL = 'https://norma.nomoreparties.space/api';
 
 const checkResponse = <T>(res: Response): Promise<T> =>
@@ -72,11 +72,8 @@ export const delMenuItemApi = (id: string) =>
       'Content-Type': 'application/json;charset=utf-8'
     }
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Добавление menuItem
 export const addMenuItemApi = (data: TMenuItems) =>
@@ -87,11 +84,8 @@ export const addMenuItemApi = (data: TMenuItems) =>
     },
     body: JSON.stringify(data)
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Изменяем MenuItem
 export const changeMenuItemApi = (data: { id: string; name: string }) =>
@@ -102,11 +96,8 @@ export const changeMenuItemApi = (data: { id: string; name: string }) =>
     },
     body: JSON.stringify({ name: data.name })
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Получаем faqItem
 export const getFaqItemsApi = () =>
@@ -114,19 +105,22 @@ export const getFaqItemsApi = () =>
     .then((res) => res.json())
     .then((data) => data);
 
+//Поиск faqItem
+export const searchFaqItemApi = (str: string) =>
+  fetch(`${URLDB}/faqitem?title=${str}`)
+    .then((res) => res.json())
+    .then((data) => data);
+
 //Удаляем faqItems
-export const delFaqItemApi = (id: string) =>
+export const delFaqItemApi = (id: number) =>
   fetch(`${URLDB}/faqitem/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     }
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Добавление faqItem
 export const addFaqItemApi = (data: TFaqItems) =>
@@ -137,26 +131,24 @@ export const addFaqItemApi = (data: TFaqItems) =>
     },
     body: JSON.stringify(data)
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Изменяем faqItem
-export const changeFaqItemApi = (data: { id: string; name: string }) =>
+export const changeFaqItemApi = (data: {
+  id: number;
+  title: string;
+  text: string;
+}) =>
   fetch(`${URLDB}/faqitem/${data.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
-    body: JSON.stringify({ name: data.name })
+    body: JSON.stringify({ title: data.title, text: data.text })
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Получаем Cards
 export const getCardsApi = (id: number) =>
@@ -193,11 +185,8 @@ export const addCardApi = (data: TCard) =>
       text: data.text
     })
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Изменяем Card
 export const changeCardTextApi = (data: {
@@ -212,11 +201,25 @@ export const changeCardTextApi = (data: {
     },
     body: JSON.stringify({ menuItemId: data.menuItemId, text: data.text })
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
+
+//Изменяем Card Image
+export const changeCardImageApi = (data: {
+  imageName: string;
+  imageFile: File;
+}) => {
+  const formData = new FormData();
+  formData.append('cardId', data.imageName);
+  formData.append('image', data.imageFile);
+  console.log(data.imageName);
+  return fetch(`${URLDB}/menuitem/card/upload`, {
+    method: 'POST',
+    body: formData
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+};
 
 export type TLoginData = {
   email: string;
