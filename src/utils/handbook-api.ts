@@ -105,19 +105,22 @@ export const getFaqItemsApi = () =>
     .then((res) => res.json())
     .then((data) => data);
 
+//Поиск faqItem
+export const searchFaqItemApi = (str: string) =>
+  fetch(`${URLDB}/faqitem?title=${str}`)
+    .then((res) => res.json())
+    .then((data) => data);
+
 //Удаляем faqItems
-export const delFaqItemApi = (id: string) =>
+export const delFaqItemApi = (id: number) =>
   fetch(`${URLDB}/faqitem/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     }
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Добавление faqItem
 export const addFaqItemApi = (data: TFaqItems) =>
@@ -128,26 +131,24 @@ export const addFaqItemApi = (data: TFaqItems) =>
     },
     body: JSON.stringify(data)
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Изменяем faqItem
-export const changeFaqItemApi = (data: { id: string; name: string }) =>
+export const changeFaqItemApi = (data: {
+  id: number;
+  title: string;
+  text: string;
+}) =>
   fetch(`${URLDB}/faqitem/${data.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     },
-    body: JSON.stringify({ name: data.name })
+    body: JSON.stringify({ title: data.title, text: data.text })
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Получаем Cards
 export const getCardsApi = (id: number) =>

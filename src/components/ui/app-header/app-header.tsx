@@ -33,7 +33,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
         <Link to='/' className={styles.link}>
           <p>Главная</p>
         </Link>
-        <Link to='/' className={styles.link}>
+        <Link to='/faq' className={styles.link}>
           <p>FAQ</p>
         </Link>
         {/* TODO: проверить после реализации авторизации */}
