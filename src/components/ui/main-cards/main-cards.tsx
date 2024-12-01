@@ -11,7 +11,7 @@ export const MainCardsUI: FC<TCard> = ({
   image,
   text
 }) => {
-  const isAuthenticated = false; //useSelector(state => state.auth.isAuthenticated); Позже
+  const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated); Позже
 
   const [editedText, setEditedText] = useState(text);
   const [editedImage, setEditedImage] = useState(image);
