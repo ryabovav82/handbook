@@ -10,7 +10,7 @@ const checkResponse = <T>(res: Response): Promise<T> =>
 
 export type TServerResponseStatus = { success: boolean };
 
-type TServerResponse<T> = TServerResponseStatus & T;
+export type TServerResponse<T> = TServerResponseStatus & T;
 
 type TRefreshResponse = TServerResponse<{
   refreshToken: string;
@@ -150,13 +150,13 @@ export const changeFaqItemApi = (data: { id: string; name: string }) =>
     });
 
 //Получаем Cards
-export const getCardsApi = (id: string) =>
+export const getCardsApi = (id: number) =>
   fetch(`${URLDB}/menuitem/card/${id}`)
     .then((res) => res.json())
     .then((data) => data);
 
 //Удаляем Card
-export const delCardApi = (menuItemId: string, id: string) =>
+export const delCardApi = (menuItemId: number, id: number) =>
   fetch(`${URLDB}/menuitem/card/${id}`, {
     method: 'DELETE',
     headers: {
@@ -192,8 +192,8 @@ export const addCardApi = (data: TCard) =>
 
 //Изменяем Card
 export const changeCardTextApi = (data: {
-  id: string;
-  menuItemId: string;
+  id: number;
+  menuItemId: number;
   text: string;
 }) =>
   fetch(`${URLDB}/menuitem/card/${data.id}`, {

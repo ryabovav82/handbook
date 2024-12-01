@@ -5,7 +5,7 @@ export const HandbookPage: FC = () => (
   <HandbookPageUI
     // isCardsLoading={false}
     isSelected
-    isAuthenticated={false}
+    isAuthenticated
   />
 );
 
