@@ -5,6 +5,9 @@
     background-color: #2d3142;
     height: 100px;
     flex-shrink: 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
   }
 
 @media screen and (max-width: 768px) {

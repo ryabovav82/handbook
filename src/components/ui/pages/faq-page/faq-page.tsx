@@ -17,6 +17,8 @@ import { TFaqItems } from '@utils-types';
 import { FaqItem } from '../../../faq-item';
 
 export const FaqPageUI: FC = () => {
+  const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
+
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(searchFaqItem(''));
@@ -57,16 +59,27 @@ export const FaqPageUI: FC = () => {
   return (
     <main className={styles.containerMain}>
       <div className={styles.container}>
-        <h1>faq Page</h1>
+        <h1 className={styles.faqTitle}>FAQ page</h1>
         <input
+          className={styles.faqSearch}
           type='text'
-          placeholder='поиск по faq'
+          placeholder='Поиск по faq'
           value={searchFaq}
           onChange={(event) => handleChange(event.target.value)}
         />
         <hr />
-        <div>
-          <button onClick={() => handleAddFaq()}>Add new faq</button>
+        <div className={styles.faqItems}>
+          {isAuthenticated && (
+            <div className={styles.faqAdd}>
+              <div
+                className={styles.faqAdd_icon}
+                onClick={() => handleAddFaq()}
+              >
+                <span className={styles.faqAdd_icon_plus}>+</span>
+              </div>
+            </div>
+          )}
+          {/* <button onClick={() => handleAddFaq()}>Add new faq</button> */}
         </div>
         {faqItems.reverse()}
       </div>
