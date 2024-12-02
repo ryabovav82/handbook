@@ -12,28 +12,47 @@ export const FaqItemUI: FC<TFaqProps> = ({
   handleSave
 }) => {
   const dispatch: AppDispatch = useDispatch();
-  const isAuthenticated = true;
+  const isAuthenticated = false; //useSelector(state => state.auth.isAuthenticated);
   const [titleState, setTitleState] = useState(title);
   const [textState, setTextState] = useState(text);
 
   return (
     <div key={id} className={styles.faq_item}>
-      <input
-        type='text'
-        value={titleState}
-        onChange={(event) => setTitleState(event.target.value)}
-      />
-      <br />
-      <input
-        type='textarea'
-        value={textState}
-        onChange={(event) => setTextState(event.target.value)}
-      />
-      <br />
-      <button onClick={() => handleDelete(id)}>delete</button>
-      <button onClick={() => handleSave(id, titleState, textState)}>
-        save
-      </button>
+      {isAuthenticated ? (
+        <input
+          className={styles.faq_item_title}
+          type='text'
+          value={titleState}
+          onChange={(event) => setTitleState(event.target.value)}
+        />
+      ) : (
+        <h2 className={styles.faq_item_title_p}>{titleState}</h2>
+      )}
+      {isAuthenticated ? (
+        <textarea
+          className={styles.faq_item_text}
+          value={textState}
+          onChange={(event) => setTextState(event.target.value)}
+        />
+      ) : (
+        <p className={styles.faq_item_text_p}>{textState}</p>
+      )}
+      {isAuthenticated ? (
+        <div className={styles.faq_item_buttons}>
+          <button
+            className={styles.faq_item_button_save}
+            onClick={() => handleSave(id, titleState, textState)}
+          >
+            Сохранить
+          </button>
+          <button
+            className={styles.faq_item_button_delete}
+            onClick={() => handleDelete(id)}
+          >
+            Удалить
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 };
