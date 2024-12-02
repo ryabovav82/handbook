@@ -1,8 +1,15 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent, useEffect } from 'react';
 import styles from './main-new-card.module.css';
-import { MainCards } from 'src/components/main-cards/main-cards';
 import { useState } from 'react';
+import {
+  addMenuItems,
+  changeMenuItem,
+  delMenuItem,
+  getMenuItems
+} from '../../../services/slices/menuItemSlice';
 import { TCard } from '@utils-types';
+import { addCard, delCard } from '../../../services/slices/cardSlice';
+import { useDispatch } from '../../../services/store';
 
 export const MainNewCardUI: FC<TCard> = ({
   id,
@@ -13,110 +20,32 @@ export const MainNewCardUI: FC<TCard> = ({
 }) => {
   const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
 
-  const testcard = {
-    id: '',
-    menuItemId: '',
-    serialNumber: '',
-    image: 'image',
-    text: 'some text'
-  };
-
-  const [editedText, setEditedText] = useState(testcard.text);
-  const [editedImage, setEditedImage] = useState(testcard.image);
-
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleCreateNewCard = () => {
-    setIsOpen(true);
-  };
-
-  const handleAddIconClick = () => {
-    setIsOpen(true);
-  };
-
-  const handleSave = () => {
-    // Логика сохранения
-    setIsOpen(false);
-  };
-
-  const handleDelete = () => {
-    // Логика удаления
-    setIsOpen(false);
+    const newCard: TCard = {
+      id: id,
+      menuItemId: 1,
+      serialNumber: 1,
+      image: 'http://localhost:3001/menuitem/card/images/1.jpg',
+      text: 'Введите текст'
+    };
+    dispatch(addCard(newCard));
   };
 
   return (
     <div>
-      {isOpen ? (
-        <div
-          className={styles.main_cards_card}
-          key={id}
-          onClick={handleCreateNewCard}
-        >
-          <div className={styles.main_cards_card_img}>
-            <img
-              className={styles.main_base_card_img}
-              src={editedImage}
-              alt={`card-${id}`}
-            />
-            {isAuthenticated && (
-              <input
-                className={styles.main_base_card_img_input}
-                type='file'
-                accept='image/*'
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                      const imageUrl = reader.result as string;
-                      setEditedImage(imageUrl);
-                    };
-                    reader.readAsDataURL(file);
-                  }
-                }}
-              />
-            )}
-          </div>
-          <div className={styles.main_base_card_text}>
-            {isAuthenticated ? (
-              <textarea
-                className={styles.main_base_card_text_input}
-                value={editedText}
-                onChange={(e) => {
-                  setEditedText(e.target.value);
-                }}
-              />
-            ) : (
-              <p className={styles.main_base_card_text_p}>{editedText}</p>
-            )}
-          </div>
-          {isAuthenticated && (
-            <div className={styles.main_base_card_buttons}>
-              <button
-                className={styles.main_base_card_button_save}
-                onClick={handleSave}
-              >
-                Сохранить
-              </button>
-              <button
-                className={styles.main_base_card_button}
-                onClick={handleDelete}
-              >
-                Удалить
-              </button>
-            </div>
-          )}
-        </div>
-      ) : (
+      {isAuthenticated && (
         <div className={styles.main_cards_add}>
           <div
             className={styles.main_cards_add_icon}
-            onClick={handleAddIconClick}
+            onClick={handleCreateNewCard}
           >
             <span className={styles.main_cards_add_icon_plus}>+</span>
           </div>
         </div>
       )}
+      {/* Отобразим кнопку добавления новой карточки */}
     </div>
   );
 };

@@ -9,7 +9,6 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
   <header className={styles.header}>
     <div className={styles.header_content}>
       <Link to='/' className={styles.link_logo}>
-        {' '}
         <div className={styles.logo}>
           <img
             className={styles.logo_img}
@@ -34,7 +33,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
         <Link to='/' className={styles.link}>
           <p>Главная</p>
         </Link>
-        <Link to='/' className={styles.link}>
+        <Link to='/faq' className={styles.link}>
           <p>FAQ</p>
         </Link>
         {/* TODO: проверить после реализации авторизации */}

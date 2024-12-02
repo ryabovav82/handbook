@@ -1,14 +1,14 @@
 .containerMain {
     width: 100%;
+    height: 100%;
     margin: 10px auto; 
     max-height: 1320px;
   }
-.main_hp {
+  .main_hp {
     display: grid;
-    grid-template-columns: min-content 1fr;
+    grid-template-columns: 350px 1fr;
     gap: 10px;
-    min-width: 768px;
-    height: 100%;
+    height: calc(100vh - 100px);
   }
 
   @media screen and (max-width: 768px) {
@@ -28,9 +28,10 @@
   }
 
   .main{
+    overflow-y: auto;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: top;
     overflow: hidden;
     background-color: #2D3142;
@@ -44,10 +45,11 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: top;
+      align-items: flex-start;
       gap: 15px;
       margin-top: 20px;
       padding-bottom: 20px;
+      width: 100%;
   }
 
 

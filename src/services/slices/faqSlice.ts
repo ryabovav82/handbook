@@ -2,7 +2,8 @@ import {
   addFaqItemApi,
   changeFaqItemApi,
   delFaqItemApi,
-  getFaqItemsApi
+  getFaqItemsApi,
+  searchFaqItemApi
 } from '../../utils/handbook-api';
 import {
   createAsyncThunk,
@@ -21,28 +22,38 @@ export const addFaqItem = createAsyncThunk<TFaqItems, TFaqItems>(
   async (data: TFaqItems): Promise<TFaqItems> => await addFaqItemApi(data)
 );
 
-export const delFaqItem = createAsyncThunk<TFaqItems, string>(
+export const delFaqItem = createAsyncThunk<TFaqItems, number>(
   'faqItems/delFaqItem',
-  async (id: string): Promise<TFaqItems> => await delFaqItemApi(id)
+  async (id: number): Promise<TFaqItems> => await delFaqItemApi(id)
 );
 
 export const changeFaqItem = createAsyncThunk<
   TFaqItems,
-  { id: string; name: string }
+  { id: number; title: string; text: string }
 >(
   'faqItems/changeFaqItem',
-  async (data: { id: string; name: string }): Promise<TFaqItems> =>
-    await changeFaqItemApi(data)
+  async (data: {
+    id: number;
+    title: string;
+    text: string;
+  }): Promise<TFaqItems> => await changeFaqItemApi(data)
+);
+
+export const searchFaqItem = createAsyncThunk<TFaqItems[], string>(
+  'faqItems/searchFaqItem',
+  async (str: string): Promise<TFaqItems[]> => await searchFaqItemApi(str)
 );
 
 type TFaqItemsState = {
   isLoading: boolean;
   error: null | SerializedError;
+  searchStr: string;
   data: TFaqItems[];
 };
 const initialState: TFaqItemsState = {
   isLoading: true,
   error: null,
+  searchStr: '',
   data: []
 };
 
@@ -62,6 +73,48 @@ export const faqItemsSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(getFaqItems.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(searchFaqItem.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(searchFaqItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.data = action.payload;
+      })
+      .addCase(searchFaqItem.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(addFaqItem.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addFaqItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.data.push(action.payload);
+      })
+      .addCase(addFaqItem.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(delFaqItem.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(delFaqItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        console.log(JSON.stringify(action.payload));
+        state.data = state.data.filter(
+          (item: TFaqItems) => item.id !== action.payload.id
+        );
+      })
+      .addCase(delFaqItem.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
       });

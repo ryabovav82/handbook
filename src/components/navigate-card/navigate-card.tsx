@@ -1,11 +1,12 @@
 import { FC, memo } from 'react';
-import { AppNavigateUI } from '../ui/app-navigate';
 import { NavigateCardUI } from '../ui/navigate-card/navigate-card';
 
 interface CardProps {
   content: string;
   to: string;
+  onDelete: () => void;
 }
-export const NavigateCard: FC<CardProps> = memo(({ content, to }) => (
-  <NavigateCardUI content={content} to={to} />
-));
+
+export const NavigateCard: FC<CardProps> = ({ content, to, onDelete }) => (
+  <NavigateCardUI content={content} to={to} onDelete={onDelete} />
+);

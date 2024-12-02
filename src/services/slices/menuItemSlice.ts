@@ -10,6 +10,7 @@ import {
   SerializedError
 } from '@reduxjs/toolkit';
 import { TMenuItems } from '@utils-types';
+import { stringify } from 'uuid';
 
 export const getMenuItems = createAsyncThunk<TMenuItems[], void>(
   'menuItems/getMenuItems',
@@ -53,6 +54,7 @@ export const menuItemsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getMenuItems.pending, (state, action) => {
+        console.log('654654654');
         state.isLoading = true;
         state.error = null;
       })
@@ -60,10 +62,30 @@ export const menuItemsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.data = action.payload;
+        console.log(state.data);
       })
       .addCase(getMenuItems.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
+      })
+      // добавления карточки
+      .addCase(addMenuItems.fulfilled, (state, action) => {
+        const updatedMenuItems = state.data.map((menuItem) => {
+          if (menuItem.id === action.payload.id) {
+            return {
+              ...menuItem,
+              cards: [...menuItem.cards, ...action.payload.cards]
+            };
+          }
+          return menuItem;
+        });
+        state.data = updatedMenuItems;
+        state.data.push(action.payload);
+      })
+      .addCase(delMenuItem.fulfilled, (state, action) => {
+        state.data = state.data.filter(
+          (menuItem) => menuItem.id !== action.payload.id
+        );
       });
   }
 });

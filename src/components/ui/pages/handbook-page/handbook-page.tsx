@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './handbook-page.module.css';
 // export const HandbookPageUI: FC = () => <>Handbook page</>;
 
@@ -11,18 +11,25 @@ export const HandbookPageUI: FC<HandbookPageUIProps> = ({
   isSelected,
   // isCardsLoading,
   isAuthenticated
-}) => (
-  <main className={styles.containerMain}>
-    <div className={styles.main_hp}>
-      <AppNavigate />
-      <div className={styles.main}>
-        {!isSelected && <MainBase />}
-        <div className={styles.main_cards}>
-          {isSelected && <MainCards />}
-          {isSelected && isAuthenticated && <MainNewCard />}
-          {/* {isCardsLoading ? <Preloader /> : } */}
+}) => {
+  isAuthenticated;
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+  const handleCardSelect = (id: string) => {
+    setSelectedCardId(id);
+  };
+  return (
+    <main className={styles.containerMain}>
+      <div className={styles.main_hp}>
+        <AppNavigate onCardSelect={handleCardSelect} />
+        <div className={styles.main}>
+          {!isSelected && <MainBase />}
+          <div className={styles.main_cards}>
+            {isSelected && <MainCards cardId={selectedCardId} />}
+            {isSelected && isAuthenticated && <MainNewCard />}
+            {/* {isCardsLoading ? <Preloader /> : } */}
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-);
+    </main>
+  );
+};
