@@ -44,6 +44,7 @@
 .faq_item_text {
     min-width: 91.99%;
     max-width: 92%;
+    min-height: 20px;
     border-radius: 1px;
     margin-top: 20px;
     background-color: #fff;
@@ -60,6 +61,8 @@
     width: 92%;
     font-size: 0.8rem;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #4F5D75 #f7f7f8;
     background-color: #fff;
     border-radius: 2%;
 }

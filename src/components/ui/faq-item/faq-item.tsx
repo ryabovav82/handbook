@@ -12,7 +12,7 @@ export const FaqItemUI: FC<TFaqProps> = ({
   handleSave
 }) => {
   const dispatch: AppDispatch = useDispatch();
-  const isAuthenticated = false; //useSelector(state => state.auth.isAuthenticated);
+  const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
   const [titleState, setTitleState] = useState(title);
   const [textState, setTextState] = useState(text);
 

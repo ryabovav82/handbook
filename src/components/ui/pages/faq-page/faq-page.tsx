@@ -17,7 +17,7 @@ import { TFaqItems } from '@utils-types';
 import { FaqItem } from '../../../faq-item';
 
 export const FaqPageUI: FC = () => {
-  const isAuthenticated = false; //useSelector(state => state.auth.isAuthenticated);
+  const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
 
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
