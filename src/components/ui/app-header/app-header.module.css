@@ -7,7 +7,7 @@
 
   .header_content {
     display: grid;
-    grid-template-columns: min-content 1fr 1fr;
+    grid-template-columns: min-content 1fr;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
@@ -16,31 +16,8 @@
     font-family: 'IBM Plex mono', sans-serif;
   }
 
-@media screen and (max-width: 768px) {
-.header_content {
-    grid-template-columns: min-content;
-    grid-template-rows: repeat(2, min-content);
-    gap: 0px;
-    padding: 0 20px;
-}
-
-.header {
-  width: 768px;
- }
-  }
-
-  @media screen and (max-width: 370px) {
-    .header {
-      width: 350px;
-     }
-  }
-
-
-  .logo {
-  }
-
   .logo_img {
-    height: 25px;
+    height: 65px;
     margin: 20px 0;
   }
 
@@ -101,3 +78,30 @@
   .link_logo {
     position: relative ;
   }
+
+  @media screen and (max-width: 768px) {
+    .header_content {
+        grid-template-columns: min-content;
+        grid-template-rows: repeat(2, min-content);
+        gap: 0px;
+        padding: 0 20px;
+    }
+    
+    .header {
+      width: 768px;
+     }
+
+     .menu {
+      justify-self: flex-start;
+    }
+      }
+    
+      @media screen and (max-width: 370px) {
+        .header {
+          width: 350px;
+         }
+
+         .menu {
+          justify-self: flex-start;
+        }
+      }
