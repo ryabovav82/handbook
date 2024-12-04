@@ -9,6 +9,7 @@ import {
   changeCardImage
 } from '../../../services/slices/cardSlice';
 import { URLDB } from '../../../utils/handbook-api';
+import { useSelector } from '../../../services/store';
 
 export const MainCardsUI: FC<TCard> = ({
   id,
@@ -17,7 +18,9 @@ export const MainCardsUI: FC<TCard> = ({
   image,
   text
 }) => {
-  const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated); Later
+  const isAuthenticated = useSelector(
+    (state) => state.userReducer.isAuthenticated
+  );
 
   const [editedText, setEditedText] = useState(text);
   const [editedImage, setEditedImage] = useState(image);

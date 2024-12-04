@@ -28,16 +28,12 @@
   }
 
   .main{
-    overflow-y: auto;
     height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: top;
     overflow: hidden;
     background-color: #2D3142;
-    overflow-y: auto;
-    scrollbar-color: #4F5D75 #f7f7f8;
-    scrollbar-width: thin;
     }
 
     .main_cards {
@@ -50,6 +46,9 @@
       margin-top: 20px;
       padding-bottom: 20px;
       width: 100%;
+      overflow-y: auto;
+      scrollbar-color: #4F5D75 #f7f7f8;
+      scrollbar-width: thin;
   }
 
 
