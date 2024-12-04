@@ -9,7 +9,9 @@ import {
 } from '../../../services/slices/menuItemSlice';
 import { TCard } from '@utils-types';
 import { addCard, delCard } from '../../../services/slices/cardSlice';
-import { useDispatch } from '../../../services/store';
+import { AppDispatch, useDispatch } from '../../../services/store';
+import App from '../../app/app';
+import { useSelector } from '../../../services/store';
 
 export const MainNewCardUI: FC<TCard> = ({
   id,
@@ -18,9 +20,11 @@ export const MainNewCardUI: FC<TCard> = ({
   image,
   text
 }) => {
-  const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(
+    (state) => state.userReducer.isAuthenticated
+  );
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleCreateNewCard = () => {
     const newCard: TCard = {
@@ -45,7 +49,6 @@ export const MainNewCardUI: FC<TCard> = ({
           </div>
         </div>
       )}
-      {/* Отобразим кнопку добавления новой карточки */}
     </div>
   );
 };

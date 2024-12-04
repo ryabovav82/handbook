@@ -1,4 +1,5 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCards } from '../../services/slices/cardSlice';
 import { TCard } from '@utils-types';
@@ -10,7 +11,7 @@ interface MainCardsProps {
 }
 
 export const MainCards: FC<MainCardsProps> = ({ cardId }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch: AppDispatch = useDispatch();
 
   const { data, isLoading, error } = useSelector(
     (state: RootState) => state.cardReducer

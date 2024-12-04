@@ -65,7 +65,6 @@ export const menuItemsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getMenuItems.pending, (state, action) => {
-        console.log('654654654');
         state.isLoading = true;
         state.error = null;
       })
@@ -81,7 +80,7 @@ export const menuItemsSlice = createSlice({
       })
       // добавления карточки
       .addCase(addMenuItems.fulfilled, (state, action) => {
-        const updatedMenuItems = state.data.map((menuItem) => {
+        state.data = state.data.map((menuItem) => {
           if (menuItem.id === action.payload.id) {
             return {
               ...menuItem,
@@ -90,7 +89,6 @@ export const menuItemsSlice = createSlice({
           }
           return menuItem;
         });
-        state.data = updatedMenuItems;
         state.data.push(action.payload);
       })
       .addCase(delMenuItem.fulfilled, (state, action) => {
