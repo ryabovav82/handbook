@@ -25,7 +25,7 @@ const App = () => {
         <Route path='/login' element={<LoginUI />} />
         <Route path='/register' element={<Register />} />
 
-        <Route path='/card/:id' element={<h1>Card Page</h1>} />
+        {/* <Route path='/card/:id' element={<h1>Card Page</h1>} /> */}
 
         <Route path='/other-page' element={<h1>Other Page</h1>} />
         <Route path='*' element={<NotFound404 />} />
