@@ -10,7 +10,8 @@ export const FaqItem: FC<TFaqProps> = ({
   title,
   text,
   handleDelete,
-  handleSave
+  handleSave,
+  isAuthenticated
 }) => {
   const dispatch: AppDispatch = useDispatch();
   return (
@@ -21,6 +22,7 @@ export const FaqItem: FC<TFaqProps> = ({
         text={text}
         handleDelete={handleDelete}
         handleSave={handleSave}
+        isAuthenticated={isAuthenticated}
       />
     </>
   );

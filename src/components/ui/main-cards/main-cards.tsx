@@ -2,7 +2,7 @@ import React, { FC, ChangeEvent } from 'react';
 import styles from './main-cards.module.css';
 import { useState } from 'react';
 import { TCard } from '@utils-types';
-import { useDispatch } from '../../../services/store';
+import { AppDispatch, useDispatch } from '../../../services/store';
 import {
   delCard,
   changeCardText,
@@ -23,7 +23,7 @@ export const MainCardsUI: FC<TCard> = ({
   const [editedImage, setEditedImage] = useState(image);
   const [isVisible, setIsVisible] = useState(true); // видимость карточки
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleSave = () => {
     if (selectedFile) {
