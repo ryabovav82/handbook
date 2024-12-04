@@ -1,11 +1,10 @@
 import { FC } from 'react';
-import { MainCardsUI } from '../ui/main-cards';
-
 import React, { useEffect, useState } from 'react';
-import { AppDispatch, useDispatch, useSelector } from '../../services/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCards } from '../../services/slices/cardSlice';
 import { TCard } from '@utils-types';
-import { AppNavigate } from '../../components/app-navigate';
+import { MainCardsUI } from '../ui/main-cards';
+import { AppDispatch, RootState } from '../../services/store';
 
 interface MainCardsProps {
   cardId: string | null;
@@ -13,31 +12,36 @@ interface MainCardsProps {
 
 export const MainCards: FC<MainCardsProps> = ({ cardId }) => {
   const dispatch: AppDispatch = useDispatch();
-  const { data, isLoading, error } = useSelector((state) => state.cardReducer);
 
-  // const [selectedMenuItemId, setSelectedMenuItemId] = useState(1);
-  // useEffect(() => {
-  //   dispatch(getCards(selectedMenuItemId.toString()));
-  // }, [dispatch, selectedMenuItemId]);
+  const { data, isLoading, error } = useSelector(
+    (state: RootState) => state.cardReducer
+  );
+  const selectedMenuItem = useSelector(
+    (state: RootState) => state.menuItemsReducer.selected
+  );
 
-  // Пока заглушку поставила
   useEffect(() => {
-    dispatch(getCards(1));
-  }, [dispatch]);
+    if (selectedMenuItem) {
+      dispatch(getCards(selectedMenuItem.id));
+      console.log(`Загрузка карточек для меню с ID ${selectedMenuItem.id}`);
+    }
+  }, [dispatch, selectedMenuItem]);
 
   if (isLoading) {
-    return <> Загружается </>;
+    return <>Загружается...</>;
   }
 
   if (error) {
-    return <>Error: Ошибка загрузки!</>;
+    return <>Ошибка загрузки!</>;
   }
 
   return (
     <>
-      {data.map((card) => (
-        <MainCardsUI key={card.id} {...card} />
-      ))}
+      {data.length > 0 ? (
+        data.map((card: TCard) => <MainCardsUI key={card.id} {...card} />)
+      ) : (
+        <div>Пожалуйста, выберите элемент меню для просмотра карточек</div>
+      )}
     </>
   );
 };

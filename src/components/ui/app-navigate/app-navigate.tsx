@@ -7,21 +7,25 @@ interface AppNavigateUIProps {
   cards: CardProps[];
   onAddCard?: () => void;
   onDeleteCard: (id: string) => void;
+  onSelectCard?: (id: string) => void;
 }
 
 export const AppNavigateUI: FC<AppNavigateUIProps> = ({
   cards,
   onAddCard,
-  onDeleteCard
+  onDeleteCard,
+  onSelectCard
 }) => (
   <nav className={styles.navigate}>
     <div className='cardList'>
       {cards.map((card) => (
         <NavigateCard
           key={card._id}
+          id={card._id}
           to={card.to}
           content={card.content}
-          onDelete={() => onDeleteCard(card._id)}
+          onDelete={() => onDeleteCard(card._id.toString())}
+          onSelect={() => onSelectCard?.(card._id.toString())}
         />
       ))}
     </div>

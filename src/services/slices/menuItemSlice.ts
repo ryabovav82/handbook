@@ -7,9 +7,11 @@ import {
 import {
   createAsyncThunk,
   createSlice,
+  PayloadAction,
   SerializedError
 } from '@reduxjs/toolkit';
-import { TMenuItems } from '@utils-types';
+import { TCard, TMenuItems } from '@utils-types';
+import { stringify } from 'uuid';
 
 export const getMenuItems = createAsyncThunk<TMenuItems[], void>(
   'menuItems/getMenuItems',
@@ -21,9 +23,12 @@ export const addMenuItems = createAsyncThunk<TMenuItems, TMenuItems>(
   async (data: TMenuItems): Promise<TMenuItems> => await addMenuItemApi(data)
 );
 
-export const delMenuItem = createAsyncThunk<TMenuItems, string>(
+export const delMenuItem = createAsyncThunk<string, string>(
   'menuItems/delMenuItem',
-  async (id: string): Promise<TMenuItems> => await delMenuItemApi(id)
+  async (id: string): Promise<string> => {
+    await delMenuItemApi(id);
+    return id;
+  }
 );
 
 export const changeMenuItem = createAsyncThunk<
@@ -39,17 +44,24 @@ type TMenuItemsState = {
   isLoading: boolean;
   error: null | SerializedError;
   data: TMenuItems[];
+  selected: TMenuItems | null;
 };
 const initialState: TMenuItemsState = {
   isLoading: true,
   error: null,
-  data: []
+  data: [],
+  selected: null
 };
 
 export const menuItemsSlice = createSlice({
   name: 'menuItems',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedMenuItem: (state, action: PayloadAction<TMenuItems | null>) => {
+      console.log('Обновление выбранного пункта меню:', action.payload);
+      state.selected = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getMenuItems.pending, (state, action) => {
@@ -60,6 +72,7 @@ export const menuItemsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.data = action.payload;
+        console.log(`getMenuItems.fulfilled`);
       })
       .addCase(getMenuItems.rejected, (state, action) => {
         state.isLoading = false;
@@ -80,11 +93,11 @@ export const menuItemsSlice = createSlice({
       })
       .addCase(delMenuItem.fulfilled, (state, action) => {
         state.data = state.data.filter(
-          (menuItem) => menuItem.id !== action.payload.id
+          (menuItem) => menuItem.id !== Number(action.payload)
         );
       });
   }
 });
 
-export const {} = menuItemsSlice.actions;
+export const { setSelectedMenuItem } = menuItemsSlice.actions;
 export default menuItemsSlice.reducer;

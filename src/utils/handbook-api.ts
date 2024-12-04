@@ -72,8 +72,20 @@ export const delMenuItemApi = (id: string) =>
       'Content-Type': 'application/json;charset=utf-8'
     }
   })
-    .then((res) => res.json())
-    .then((data) => data);
+    .then((res) => {
+      if (res.status === 204) {
+        // если статус 204, контент в ответе отсутствует
+        return null;
+      }
+
+      //как JSON
+      return res.json();
+    })
+    .then((data) => data) // возвращаем данны
+    .catch((error) => {
+      console.error('Ошибка при удалении:', error);
+      throw error;
+    });
 
 //Добавление menuItem
 export const addMenuItemApi = (data: TMenuItems) =>

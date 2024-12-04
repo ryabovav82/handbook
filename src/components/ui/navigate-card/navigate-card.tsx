@@ -1,51 +1,83 @@
 import { FC, memo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavModal } from '../../nav-modal/nav-modal';
+import { useDispatch } from 'react-redux';
 import styles from './navigate-card.module.css';
+import { changeMenuItem } from '../../../services/slices/menuItemSlice';
+import { EditModal } from '../../nav-edit/edit-modal';
+import { AppDispatch } from '../../../services/store';
 
 interface CardProps {
+  id: number;
   content: string;
   to: string;
   onDelete: () => void;
+  onSelect?: (id: string) => void;
+  isSelected: boolean;
 }
 
 export const NavigateCardUI: FC<CardProps> = memo(
-  ({ content, to, onDelete }) => {
-    const [isMenuOpen, setMenuOpen] = useState(false);
-
-    const toggleMenu = () => setMenuOpen(!isMenuOpen);
+  ({ id, content, to, onDelete, onSelect, isSelected }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleDelete = () => {
       onDelete();
-      setMenuOpen(false);
+      setIsModalOpen(false);
     };
 
     const handleEdit = () => {
-      console.log('Редактировать');
-      setMenuOpen(false);
+      setIsEditModalOpen(true);
+      setIsModalOpen(false);
+    };
+
+    const handleSaveEdit = (newName: string) => {
+      dispatch(changeMenuItem({ id: id.toString(), name: newName }));
+    };
+
+    const handleClick = () => {
+      if (onSelect) {
+        onSelect(id.toString());
+      }
     };
 
     return (
-      <div className={styles.cardWrapper}>
-        <Link to={to} className={styles.cardLink}>
-          <div className={styles.card}>
+      <div
+        className={`${styles.cardWrapper} ${isSelected ? styles.selected : ''}`}
+      >
+        <div
+          className={styles.cardLink}
+          onClick={() => onSelect?.(id.toString())}
+        >
+          <div className={`${styles.card} ${isSelected ? styles.active : ''}`}>
             <p className={styles.content}>{content}</p>
           </div>
-        </Link>
+        </div>
+
         <div className={styles.menuWrapper}>
-          <button className={styles.menuButton} onClick={toggleMenu}>
+          <button
+            className={styles.menuButton}
+            onClick={() => setIsModalOpen(true)}
+          >
             ⋮
           </button>
-          {isMenuOpen && (
-            <div className={styles.dropdownMenu}>
-              <button className={styles.dropdownItem} onClick={handleEdit}>
-                Изменить
-              </button>
-              <button className={styles.dropdownItem} onClick={handleDelete}>
-                Удалить
-              </button>
-            </div>
-          )}
         </div>
+
+        {isModalOpen && (
+          <NavModal
+            onClose={() => setIsModalOpen(false)}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        )}
+
+        {isEditModalOpen && (
+          <EditModal
+            onClose={() => setIsEditModalOpen(false)}
+            onSave={handleSaveEdit}
+            currentName={content}
+          />
+        )}
       </div>
     );
   }
