@@ -27,7 +27,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
         </Link>
         {/* TODO: проверить после реализации авторизации */}
         <Link to='/login' className={styles.link}>
-          <p> {userName}</p>
+          <p> {userName || 'Личный кабинет'}</p>
         </Link>
       </nav>
     </div>

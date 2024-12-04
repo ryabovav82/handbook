@@ -54,7 +54,6 @@ export const menuItemsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getMenuItems.pending, (state, action) => {
-        console.log('654654654');
         state.isLoading = true;
         state.error = null;
       })

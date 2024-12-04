@@ -53,6 +53,7 @@ export const register = createAsyncThunk<TUser, TRegisterData>(
     }
     const { user, refreshToken, accessToken } = res;
     storeTokens(refreshToken, accessToken);
+    console.log(user);
     return user;
   }
 );
@@ -107,6 +108,7 @@ const slice = createSlice({
         state.loginError = undefined;
         state.isAuthenticated = true;
         state.data = action.payload;
+        console.log(state.data);
       })
       .addCase(login.rejected, (state, action) => {
         state.loginError = action.meta.rejectedWithValue

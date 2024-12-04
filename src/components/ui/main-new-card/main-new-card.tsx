@@ -9,7 +9,8 @@ import {
 } from '../../../services/slices/menuItemSlice';
 import { TCard } from '@utils-types';
 import { addCard, delCard } from '../../../services/slices/cardSlice';
-import { useDispatch } from '../../../services/store';
+import { AppDispatch, useDispatch } from '../../../services/store';
+import App from '../../app/app';
 
 export const MainNewCardUI: FC<TCard> = ({
   id,
@@ -20,7 +21,7 @@ export const MainNewCardUI: FC<TCard> = ({
 }) => {
   const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleCreateNewCard = () => {
     const newCard: TCard = {

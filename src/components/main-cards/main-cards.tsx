@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { MainCardsUI } from '../ui/main-cards';
 
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from '../../services/store';
+import { AppDispatch, useDispatch, useSelector } from '../../services/store';
 import { getCards } from '../../services/slices/cardSlice';
 import { TCard } from '@utils-types';
 import { AppNavigate } from '../../components/app-navigate';
@@ -12,7 +12,7 @@ interface MainCardsProps {
 }
 
 export const MainCards: FC<MainCardsProps> = ({ cardId }) => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const { data, isLoading, error } = useSelector((state) => state.cardReducer);
 
   // const [selectedMenuItemId, setSelectedMenuItemId] = useState(1);

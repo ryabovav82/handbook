@@ -24,7 +24,7 @@ export const AppNavigate: FC<AppNavigateProps> = memo(({ onCardSelect }) => {
   useEffect(() => {
     console.log('Загрузка menuItems...');
     dispatch(getMenuItems());
-  }, [dispatch]);
+  }, []);
 
   const {
     data: menuItems,
@@ -41,10 +41,6 @@ export const AppNavigate: FC<AppNavigateProps> = memo(({ onCardSelect }) => {
       })),
     [menuItems]
   );
-
-  useEffect(() => {
-    dispatch(getMenuItems());
-  }, [dispatch, menuItems]);
 
   function onAddCard() {
     const newMenuItem = {
