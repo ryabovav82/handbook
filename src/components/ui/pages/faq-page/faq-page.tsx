@@ -16,9 +16,11 @@ import {
 import { TFaqItems } from '@utils-types';
 import { FaqItem } from '../../../faq-item';
 
-export const FaqPageUI: FC = () => {
-  const isAuthenticated = true; //useSelector(state => state.auth.isAuthenticated);
-
+interface FAQPageProps {
+  isAuthenticated: boolean;
+}
+export const FaqPageUI: FC<FAQPageProps> = ({ isAuthenticated }) => {
+  console.log('isAuthenticated -' + isAuthenticated);
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(searchFaqItem(''));
@@ -44,6 +46,7 @@ export const FaqPageUI: FC = () => {
       text={item.text}
       handleDelete={handleDelete}
       handleSave={handleSave}
+      isAuthenticated={isAuthenticated}
     />
   ));
 

@@ -108,7 +108,8 @@ const slice = createSlice({
         state.loginError = undefined;
         state.isAuthenticated = true;
         state.data = action.payload;
-        console.log(state.data);
+        console.log(state.isAuthChecked);
+        console.log(state.isAuthenticated);
       })
       .addCase(login.rejected, (state, action) => {
         state.loginError = action.meta.rejectedWithValue
@@ -116,11 +117,15 @@ const slice = createSlice({
           : action.error;
       })
       .addCase(logoutUser.fulfilled, (state) => {
+        console.log('LOGOUT');
         state.isAuthenticated = false;
         state.data = {
           email: '',
           name: ''
         };
+      })
+      .addCase(logoutUser.rejected, (state) => {
+        console.log('LOGOUT ERROR');
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.isAuthenticated = true;

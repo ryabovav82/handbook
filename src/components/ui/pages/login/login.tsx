@@ -3,7 +3,7 @@ import styles from './login.module.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../../../../services/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../../services/slices/userSlice';
+import { login, logoutUser } from '../../../../services/slices/userSlice';
 import { RootState } from '../../../../services/store';
 export const LoginUI: FC = () => {
   const location = useLocation();
@@ -21,6 +21,12 @@ export const LoginUI: FC = () => {
     e.preventDefault();
     try {
       await dispatch(login({ email, password }));
+      navigate(from.pathname, { replace: true });
+    } catch (_) {}
+  };
+  const handleExit = async () => {
+    try {
+      await dispatch(logoutUser());
       navigate(from.pathname, { replace: true });
     } catch (_) {}
   };
@@ -42,6 +48,13 @@ export const LoginUI: FC = () => {
         />
         <button type='submit' className={styles.loginButton}>
           Войти
+        </button>
+        <button
+          type='button'
+          className={styles.loginButton}
+          onClick={handleExit}
+        >
+          Exit
         </button>
       </form>
       <Link to='/register'>
