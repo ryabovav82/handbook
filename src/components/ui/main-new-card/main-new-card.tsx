@@ -24,12 +24,20 @@ export const MainNewCardUI: FC<TCard> = ({
     (state) => state.userReducer.isAuthenticated
   );
 
+  const selectedMenuItem = useSelector(
+    (state) => state.menuItemsReducer.isSelected
+  );
+
   const dispatch: AppDispatch = useDispatch();
 
   const handleCreateNewCard = () => {
+    const defoltMenuItemID: number = 0;
+    const menuItemID = selectedMenuItem
+      ? selectedMenuItem.id
+      : defoltMenuItemID;
     const newCard: TCard = {
       id: id,
-      menuItemId: 1,
+      menuItemId: menuItemID,
       serialNumber: 1,
       image: 'http://localhost:3001/menuitem/card/images/1.jpg',
       text: 'Введите текст'

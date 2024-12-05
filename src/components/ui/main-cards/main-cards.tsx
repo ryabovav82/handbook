@@ -6,7 +6,8 @@ import { AppDispatch, useDispatch } from '../../../services/store';
 import {
   delCard,
   changeCardText,
-  changeCardImage
+  changeCardImage,
+  removeCard
 } from '../../../services/slices/cardSlice';
 import { URLDB } from '../../../utils/handbook-api';
 import { useSelector } from '../../../services/store';
@@ -37,8 +38,19 @@ export const MainCardsUI: FC<TCard> = ({
     dispatch(changeCardText({ menuItemId, id, text: editedText }));
   };
 
+  // const handleDelete = () => {
+  //   dispatch(removeCard({ menuItemId, id }));
+  //   setIsVisible(false);
+  // };
+
   const handleDelete = () => {
-    dispatch(delCard({ menuItemId, id }));
+    dispatch(delCard({ menuItemId, id }))
+      .then(() => {
+        dispatch(removeCard({ menuItemId, id }));
+      })
+      .catch((error) => {
+        console.error('Ошибка при удалении', error);
+      });
     setIsVisible(false);
   };
 
