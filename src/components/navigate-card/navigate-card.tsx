@@ -19,7 +19,7 @@ export const NavigateCard: FC<CardProps> = ({
   onSelect
 }) => {
   const selectedMenuItem = useSelector(
-    (state: RootState) => state.menuItemsReducer.selected
+    (state: RootState) => state.menuItemsReducer.isSelected
   );
   const isSelected = selectedMenuItem?.id === id;
 
