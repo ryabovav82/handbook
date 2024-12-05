@@ -17,7 +17,7 @@ export const MainCards: FC<MainCardsProps> = ({ cardId }) => {
     (state: RootState) => state.cardReducer
   );
   const selectedMenuItem = useSelector(
-    (state: RootState) => state.menuItemsReducer.selected
+    (state: RootState) => state.menuItemsReducer.isSelected
   );
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 // import { ICardProps } from 'src/components/main-cards/main-cards';
-import { TCard } from '@utils-types';
+import { TCard, TMenuItems } from '@utils-types';
 export type HandbookPageUIProps = {
   // isCardsLoading: boolean;
-  isSelected: boolean;
+  isSelected: TMenuItems | null;
   isAuthenticated: boolean;
 };
