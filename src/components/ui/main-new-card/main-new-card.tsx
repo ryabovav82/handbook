@@ -25,12 +25,17 @@ export const MainNewCardUI: FC<TCard> = ({
   );
 
   const selectedMenuItem = useSelector(
+<<<<<<< HEAD
     (state: RootState) => state.menuItemsReducer.isSelected
+=======
+    (state) => state.menuItemsReducer.isSelected
+>>>>>>> 7f7cb8955d710f41575921dff225826f8f45f795
   );
 
   const dispatch: AppDispatch = useDispatch();
 
   const handleCreateNewCard = () => {
+<<<<<<< HEAD
     const defaultMenuItemId = 0;
     const menuItemId = selectedMenuItem
       ? selectedMenuItem.id
@@ -38,6 +43,15 @@ export const MainNewCardUI: FC<TCard> = ({
     const newCard: TCard = {
       id: id,
       menuItemId: menuItemId,
+=======
+    const defoltMenuItemID: number = 0;
+    const menuItemID = selectedMenuItem
+      ? selectedMenuItem.id
+      : defoltMenuItemID;
+    const newCard: TCard = {
+      id: id,
+      menuItemId: menuItemID,
+>>>>>>> 7f7cb8955d710f41575921dff225826f8f45f795
       serialNumber: 1,
       image: 'http://localhost:3001/menuitem/card/images/1.jpg',
       text: 'Введите текст'

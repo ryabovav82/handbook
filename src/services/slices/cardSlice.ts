@@ -11,6 +11,7 @@ import {
   SerializedError
 } from '@reduxjs/toolkit';
 import { TCard } from '@utils-types';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 export const getCards = createAsyncThunk<TCard[], number>(
   'cards/getCards',
@@ -76,7 +77,15 @@ const initialState: TCardsState = {
 export const cardsSlice = createSlice({
   name: 'cards',
   initialState,
-  reducers: {},
+  reducers: {
+    // Удаление карточки по ID
+    removeCard: (
+      state,
+      action: PayloadAction<{ menuItemId: number; id: number }>
+    ) => {
+      state.data = state.data.filter((card) => card.id !== action.payload.id);
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCards.pending, (state, action) => {
@@ -140,5 +149,5 @@ export const cardsSlice = createSlice({
   }
 });
 
-export const {} = cardsSlice.actions;
+export const { removeCard } = cardsSlice.actions;
 export default cardsSlice.reducer;
