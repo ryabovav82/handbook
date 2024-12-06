@@ -116,10 +116,24 @@ export const cardsSlice = createSlice({
           (item) => item.id === action.payload.id
         );
         if (findCard) {
+          findCard.text = action.payload.text;
           findCard.image = `http://localhost:3001/menuitem/card/images/${action.payload.id}.jpg`;
         }
       })
       .addCase(changeCardText.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(delCard.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(delCard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.data = state.data.filter((item) => item.id !== action.payload.id);
+      })
+      .addCase(delCard.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
       });

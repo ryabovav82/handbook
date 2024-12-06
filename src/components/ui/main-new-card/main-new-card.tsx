@@ -9,7 +9,7 @@ import {
 } from '../../../services/slices/menuItemSlice';
 import { TCard } from '@utils-types';
 import { addCard, delCard } from '../../../services/slices/cardSlice';
-import { AppDispatch, useDispatch } from '../../../services/store';
+import { AppDispatch, RootState, useDispatch } from '../../../services/store';
 import App from '../../app/app';
 import { useSelector } from '../../../services/store';
 
@@ -24,12 +24,20 @@ export const MainNewCardUI: FC<TCard> = ({
     (state) => state.userReducer.isAuthenticated
   );
 
+  const selectedMenuItem = useSelector(
+    (state: RootState) => state.menuItemsReducer.isSelected
+  );
+
   const dispatch: AppDispatch = useDispatch();
 
   const handleCreateNewCard = () => {
+    const defaultMenuItemId = 0;
+    const menuItemId = selectedMenuItem
+      ? selectedMenuItem.id
+      : defaultMenuItemId;
     const newCard: TCard = {
       id: id,
-      menuItemId: 1,
+      menuItemId: menuItemId,
       serialNumber: 1,
       image: 'http://localhost:3001/menuitem/card/images/1.jpg',
       text: 'Введите текст'

@@ -35,7 +35,9 @@ export const FaqItemUI: FC<TFaqProps> = ({
           onChange={(event) => setTextState(event.target.value)}
         />
       ) : (
-        <p className={styles.faq_item_text_p}>{textState}</p>
+        <p className={styles.faq_item_text_p}>
+          <pre>{textState}</pre>
+        </p>
       )}
       {isAuthenticated ? (
         <div className={styles.faq_item_buttons}>

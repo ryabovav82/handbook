@@ -42,7 +42,6 @@ export const AppNavigate: FC<AppNavigateProps> = memo(({ onCardSelect }) => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    console.log('Загрузка menuItems...');
     dispatch(getMenuItems());
   }, []);
 

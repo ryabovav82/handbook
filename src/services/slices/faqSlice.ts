@@ -109,7 +109,6 @@ export const faqItemsSlice = createSlice({
       .addCase(delFaqItem.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log(JSON.stringify(action.payload));
         state.data = state.data.filter(
           (item: TFaqItems) => item.id !== action.payload.id
         );
@@ -117,6 +116,27 @@ export const faqItemsSlice = createSlice({
       .addCase(delFaqItem.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
+      })
+      .addCase(changeFaqItem.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(changeFaqItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        console.log(JSON.stringify(action.payload));
+        const foundFaq = state.data.find(
+          (item: TFaqItems) => item.id === action.payload.id
+        );
+        if (foundFaq) {
+          foundFaq.title = action.payload.title;
+          foundFaq.text = action.payload.text;
+        }
+      })
+      .addCase(changeFaqItem.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+        console.log('change ERROR');
       });
   }
 });

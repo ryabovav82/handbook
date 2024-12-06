@@ -26,7 +26,8 @@ type TUserState = {
 
 export const initialState: TUserState = {
   isAuthChecked: false,
-  isAuthenticated: false,
+  // isAuthenticated: false,
+  isAuthenticated: true,
   data: {
     name: '',
     email: ''

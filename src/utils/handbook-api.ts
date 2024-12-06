@@ -177,11 +177,8 @@ export const delCardApi = (menuItemId: number, id: number) =>
     },
     body: JSON.stringify({ menuItemId: menuItemId })
   })
-    .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
+    .then((res) => res.json())
+    .then((data) => data);
 
 //Добавление Card
 export const addCardApi = (data: TCard) =>
@@ -275,7 +272,6 @@ export const loginUserApi = (data: TLoginData) =>
   })
     .then((res) => checkResponse<any>(res))
     .then((data) => {
-      console.log(data);
       if (data?.success) return data;
       return Promise.reject(data);
     });
