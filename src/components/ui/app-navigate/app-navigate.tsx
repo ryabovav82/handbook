@@ -17,7 +17,7 @@ export const AppNavigateUI: FC<AppNavigateUIProps> = ({
   onSelectCard
 }) => (
   <nav className={styles.navigate}>
-    <div className='cardList'>
+    <div className={styles.cardList}>
       {cards.map((card) => (
         <NavigateCard
           key={card._id}

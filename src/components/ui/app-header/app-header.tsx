@@ -20,14 +20,14 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
       <nav className={`${styles.menu}`}>
         {/* TODO: прописать пути */}
         <Link to='/' className={styles.link}>
-          <p>Главная</p>
+          Главная
         </Link>
         <Link to='/faq' className={styles.link}>
-          <p>FAQ</p>
+          FAQ
         </Link>
         {/* TODO: проверить после реализации авторизации */}
         <Link to='/login' className={styles.link}>
-          <p> {userName || 'Личный кабинет'}</p>
+          {userName || 'Личный кабинет'}
         </Link>
       </nav>
     </div>

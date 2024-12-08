@@ -1,6 +1,6 @@
 .header {
     background-color: #2D3142;
-    min-height: 140px;
+    min-height: 110px;
     display: flex;
     align-items: center;
   }
@@ -18,7 +18,9 @@
 
   .logo_img {
     height: 65px;
-    margin: 20px 0;
+  }
+  .logo {
+    height: 65px;
   }
 
   .menu {
@@ -83,12 +85,12 @@
     .header_content {
         grid-template-columns: min-content;
         grid-template-rows: repeat(2, min-content);
-        gap: 0px;
+        gap: 5px;
         padding: 0 20px;
     }
     
     .header {
-      width: 768px;
+      /* width: 768px; */
      }
 
      .menu {
