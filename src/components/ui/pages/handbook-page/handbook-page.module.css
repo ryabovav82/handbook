@@ -49,8 +49,9 @@ body {
   @media screen and (max-width: 768px) {
     .main_hp {
       grid-template-columns: 1fr;
-      grid-template-rows: min-content 1fr;
+      grid-template-rows: min-content min-content;
       gap: 10px;
+      height: 100%;
     }
   }
 
@@ -60,7 +61,8 @@ body {
     }
     .main_hp {
       grid-template-columns: 350px;
-      grid-template-rows: min-content 1fr;
+      grid-template-rows: min-content min-content;
       gap: 10px;
+      height: 100%;
     }
   }

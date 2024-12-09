@@ -19,7 +19,10 @@ export const NavModal: FC<ModalProps> = ({ onClose, onDelete, onEdit }) => (
         <button className={styles.modalButton} onClick={onEdit}>
           Изменить
         </button>
-        <button className={styles.modalButton} onClick={onDelete}>
+        <button
+          className={styles.modalButton + ' ' + styles.modalButtonDelete}
+          onClick={onDelete}
+        >
           Удалить
         </button>
       </div>

@@ -8,8 +8,6 @@
   padding: 20px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  /* overflow: hidden; */
-  /* overflow-y: auto; */
 }
 
 
@@ -17,9 +15,6 @@
 .navigate > .cardList {
   flex-grow: 1; 
   width: 100%;
-  /* overflow-y: auto; */
-  /* scrollbar-color: #4f5d75 #f7f7f8;
-  scrollbar-width: thin; */
   padding-right: 10px;
   box-sizing: border-box;
 }

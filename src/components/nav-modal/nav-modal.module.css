@@ -1,4 +1,3 @@
-
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -50,5 +49,15 @@
   }
   
   .modalButton:hover {
-    background-color: #e67e22;
+    background-color: #BFC0C0;
+    color: #ffffff;
+  }
+
+  .modalButtonDelete {
+    background-color: #4F5D75;
+  }
+
+  .modalButtonDelete:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
   }

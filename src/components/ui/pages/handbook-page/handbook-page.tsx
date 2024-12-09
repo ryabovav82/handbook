@@ -21,7 +21,7 @@ export const HandbookPageUI: FC<HandbookPageUIProps> = ({
     <main className={styles.containerMain}>
       <div className={styles.main_hp}>
         <div className={styles.navigate_scroll}>
-           <AppNavigate onCardSelect={handleCardSelect} />
+          <AppNavigate onCardSelect={handleCardSelect} />
         </div>
         <div className={styles.main}>
           {!isSelected && <MainBase />}

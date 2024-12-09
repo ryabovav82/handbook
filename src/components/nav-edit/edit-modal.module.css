@@ -43,7 +43,7 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%;
+    width: 92%;
   }
   
   .modalButton {
@@ -58,5 +58,6 @@
   }
   
   .modalButton:hover {
-    background-color: #e67e22;
+    background-color: #BFC0C0;
+    color: #ffffff;
   }
