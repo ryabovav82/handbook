@@ -6,11 +6,9 @@
   width: 350px;
   background-color: #2d3142;
   padding: 20px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
+  font-family: 'IBM Plex mono', sans-serif;
 }
-
-
 
 .navigate > .cardList {
   flex-grow: 1; 

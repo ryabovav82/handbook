@@ -3,9 +3,9 @@
     min-height: 110px;
     display: flex;
     align-items: center;
-  }
+}
 
-  .header_content {
+.header_content {
     display: grid;
     grid-template-columns: min-content 1fr;
     justify-content: space-between;
@@ -14,43 +14,44 @@
     padding: 0 40px;
     width: 100%;
     font-family: 'IBM Plex mono', sans-serif;
-  }
+}
 
-  .logo_img {
+.logo_img {
     height: 65px;
-  }
-  .logo {
-    height: 65px;
-  }
+}
 
-  .menu {
+.logo {
+    height: 65px;
+}
+
+.menu {
     display: flex;
     justify-self: end;
     align-self: center;
     gap: 15px;
-  }
+}
 
-  .link {
+.link {
     text-decoration: none;
     color: #ffffff;
-  }
+}
 
-  .link:hover {
+.link:hover {
     text-decoration: underline #BFC0C0;
     text-underline-offset: 3px;
     color: #BFC0C0;
-  }
+}
 
-  .link:focus {
+.link:focus {
     color: #EF8354;
     font-weight: 700;
-  }
+}
 
-  .form {
+.form {
     display: flex;
     justify-self: center;
     width: 100%;
-  }
+}
 
   .input {
     width: 100%;
@@ -58,52 +59,49 @@
     border: 1px solid #ffffff;
   }
 
-  .input:focus {
+.input:focus {
     outline: none;
     border-radius: 1px;
     border: 1px solid #EF8354;
     color: #2D3142;
-  }
+}
 
-  .button {
+.button {
     background-color: #EF8354;
     border-radius: 1px;
     border: 1px solid #EF8354;
     color: #fff;
     cursor: pointer;
-  }
-  .button:hover {
+}
+
+.button:hover {
     background-color: #BFC0C0;
     border: 1px solid #BFC0C0;
-  }
+}
 
-  .link_logo {
+.link_logo {
     position: relative ;
-  }
+}
 
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .header_content {
         grid-template-columns: min-content;
         grid-template-rows: repeat(2, min-content);
         gap: 5px;
         padding: 0 20px;
-    }
-    
-    .header {
-      /* width: 768px; */
-     }
+  }
 
-     .menu {
+    .menu {
       justify-self: flex-start;
     }
-      }
+}
     
-      @media screen and (max-width: 370px) {
-        .header {
-          width: 350px;
-         }
+@media screen and (max-width: 370px) {
+    .header {
+       width: 350px;
+    }
 
-         .menu {
-          justify-self: flex-start;
-        }
-      }
+    .menu {
+      justify-self: flex-start;
+    }
+}

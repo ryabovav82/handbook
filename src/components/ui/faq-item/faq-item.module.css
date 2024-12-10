@@ -9,6 +9,7 @@
     background-color:#f7f7f8;
     width: 100%;
     box-sizing: border-box;
+    font-family: 'IBM Plex mono', sans-serif;
 }
 
 .faq_item:last-child {
@@ -86,9 +87,9 @@ width: 92%;
     border-radius: 5px;
     cursor: pointer;
     transition:  0.3s ease;
-    /* margin: 15px; */
-  }
-  .faq_item_button_save {
+}
+
+.faq_item_button_save {
     width: 115px;
     background-color: #f47c2b;
     color: #fff;
@@ -98,18 +99,17 @@ width: 92%;
     border-radius: 5px;
     cursor: pointer;
     transition:  0.3s ease;
-    /* margin: 15px; */
-  }
+}
 
-  .faq_item_button_delete:hover {
+.faq_item_button_delete:hover {
     background-color: #BFC0C0;
     color: #ffffff;
     border: 2px solid #BFC0C0;
-  }
+}
 
-  .faq_item_button_save:hover {
+.faq_item_button_save:hover {
     background-color: #BFC0C0;
     color: #ffffff;
     border: 2px solid #BFC0C0;
-  }
+}
 

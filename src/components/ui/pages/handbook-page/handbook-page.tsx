@@ -5,6 +5,7 @@ import styles from './handbook-page.module.css';
 import { AppNavigate, MainBase, MainCards, MainNewCard } from '@components';
 import { Preloader } from '@ui';
 import { HandbookPageUIProps } from './type';
+import { container } from 'webpack';
 
 // TODO: возможно... реализовать потом на момент загрузки данных прелоадер, учлащая его в HandbookPageUIProps
 export const HandbookPageUI: FC<HandbookPageUIProps> = ({

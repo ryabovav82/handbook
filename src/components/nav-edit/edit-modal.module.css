@@ -45,6 +45,10 @@
     border-radius: 5px;
     width: 92%;
   }
+  .inputField:focus {
+    outline: none;
+    border: 1px solid #f47c2b
+  }
   
   .modalButton {
     background-color: #f47c2b;

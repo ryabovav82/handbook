@@ -28,11 +28,11 @@ export const MainCards: FC<MainCardsProps> = ({ cardId }) => {
   }, [dispatch, selectedMenuItem]);
 
   if (isLoading) {
-    return <>Загружается...</>;
+    return <div color='white'>Загружается...</div>;
   }
 
   if (error) {
-    return <>Ошибка загрузки!</>;
+    return <div color='white'>Ошибка!</div>;
   }
 
   return (
@@ -40,7 +40,7 @@ export const MainCards: FC<MainCardsProps> = ({ cardId }) => {
       {data.length > 0 ? (
         data.map((card: TCard) => <MainCardsUI key={card.id} {...card} />)
       ) : (
-        <div>Пожалуйста, выберите элемент меню для просмотра карточек</div>
+        <div> </div>
       )}
     </>
   );
