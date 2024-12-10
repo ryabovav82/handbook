@@ -5,7 +5,6 @@ export const AppFooterUI: FC = () => (
   <footer className={styles.footer}>
     <div className={styles.footer_content}>
       <Link to='tel:+99995555555' className={styles.phone}>
-        {' '}
         Тел. +7 (999) 999-99-99
       </Link>
       <div className={styles.footer_content_copyright}>

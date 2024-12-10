@@ -1,25 +1,30 @@
 .main_base {
-    height: 100%;
+    /* height: 100%; */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: visible;
+    background-color: #2D3142;
+    margin-top: 20px;
 }
 
 .main_base_img {
-    height: 100%;
-}
-
-
-@media screen and (max-width: 370px) {
-    .main_base {
-        width: 350px;
- }
+    width: 95%;
+    border-radius: 2px;
 }
 
 @media screen and (max-width: 768px) {
     .main_base {
         width: 768px;
- }
+    }
 }
 
+@media screen and (max-width: 370px) {
+    .main_base {
+        width: 350px;
+    }
+
+    .main_base_img {
+        width: 350px;
+    }
+}

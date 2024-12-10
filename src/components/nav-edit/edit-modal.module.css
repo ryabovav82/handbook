@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000;
+    z-index: 3;
   }
   
   .modalContent {
@@ -43,7 +43,11 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%;
+    width: 92%;
+  }
+  .inputField:focus {
+    outline: none;
+    border: 1px solid #f47c2b
   }
   
   .modalButton {
@@ -58,5 +62,6 @@
   }
   
   .modalButton:hover {
-    background-color: #e67e22;
+    background-color: #BFC0C0;
+    color: #ffffff;
   }

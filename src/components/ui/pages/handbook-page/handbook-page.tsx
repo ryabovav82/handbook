@@ -5,6 +5,7 @@ import styles from './handbook-page.module.css';
 import { AppNavigate, MainBase, MainCards, MainNewCard } from '@components';
 import { Preloader } from '@ui';
 import { HandbookPageUIProps } from './type';
+import { container } from 'webpack';
 
 // TODO: возможно... реализовать потом на момент загрузки данных прелоадер, учлащая его в HandbookPageUIProps
 export const HandbookPageUI: FC<HandbookPageUIProps> = ({
@@ -20,7 +21,9 @@ export const HandbookPageUI: FC<HandbookPageUIProps> = ({
   return (
     <main className={styles.containerMain}>
       <div className={styles.main_hp}>
-        <AppNavigate onCardSelect={handleCardSelect} />
+        <div className={styles.navigate_scroll}>
+          <AppNavigate onCardSelect={handleCardSelect} />
+        </div>
         <div className={styles.main}>
           {!isSelected && <MainBase />}
           <div className={styles.main_cards}>
