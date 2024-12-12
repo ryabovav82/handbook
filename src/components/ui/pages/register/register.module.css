@@ -1,6 +1,6 @@
 .container {
     background-color: #2D3142; 
-    height: 100vh;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

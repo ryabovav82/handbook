@@ -19,11 +19,6 @@
     scrollbar-width: thin;
 }
 
-@media screen and (max-width: 768px) {
-  .containerMain {
-    width: 768px;
-  }
-}
 @media screen and (max-width: 370px) {
     .containerMain {
       width: 350px;
