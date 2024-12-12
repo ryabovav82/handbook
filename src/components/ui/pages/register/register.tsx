@@ -4,6 +4,7 @@ import { AppDispatch } from '../../../../services/store';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../../../services/slices/userSlice';
+import { Link } from 'react-router-dom';
 
 export const RegisterUI: FC = () => {
   const [userName, setUserName] = useState('');
@@ -21,35 +22,40 @@ export const RegisterUI: FC = () => {
     } catch (_) {}
   };
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Регистрация</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='Имя'
-          className={styles.input}
-          onChange={(event) => setUserName(event.target.value)}
-        />
-        <input
-          type='email'
-          placeholder='Эмейл'
-          className={styles.input}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <input
-          type='password'
-          placeholder='Пароль'
-          className={styles.input}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        <button type='submit' className={styles.registerButton}>
-          Зарегистрироваться
-        </button>
-      </form>
-      <div className={styles.loginPrompt}>
-        <span>Уже зарегистрированы?</span>
-        <button className={styles.loginButton}>Войти</button>
+    <main className={styles.containerMain}>
+     <div className={styles.container}>
+        <h1 className={styles.title}>Регистрация</h1>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            type='text'
+            placeholder='Имя'
+            className={styles.input}
+            onChange={(event) => setUserName(event.target.value)}
+          />
+          <input
+            type='email'
+            placeholder='Эмейл'
+            className={styles.input}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <input
+            type='password'
+            placeholder='Пароль'
+            className={styles.input}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <button type='submit' className={styles.registerButton}>
+            Зарегистрироваться
+          </button>
+        </form>
+        <div className={styles.loginPrompt}>
+         <span>Уже зарегистрированы?</span>
+         {/* <button className={styles.loginButton}>Войти</button> */}
+         <Link to='/login'className={styles.login}> 
+            Войти
+         </Link>
+        </div>
       </div>
-    </div>
-  );
+      </main>
+ );
 };
