@@ -87,18 +87,6 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   color: #ffffff;
   border: 2px solid #BFC0C0;
 }
-  
-/* .registerButton {
-    margin-top: 15px;
-    background-color: transparent;
-    color: #f47c2b;
-    border: 2px solid #f47c2b;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-} */
 
 .registerBlock {
 display: flex;
@@ -123,12 +111,6 @@ gap: 10px;
   text-underline-offset: 3px;
   color: #BFC0C0;
 }
-
-  
-/* .registerButton:hover {
-    background-color: #f47c2b;
-    color: #fff;
-} */
 
 @media screen and (max-width: 370px) {
   .containerMain {

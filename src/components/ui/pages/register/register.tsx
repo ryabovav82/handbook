@@ -23,7 +23,7 @@ export const RegisterUI: FC = () => {
   };
   return (
     <main className={styles.containerMain}>
-     <div className={styles.container}>
+      <div className={styles.container}>
         <h1 className={styles.title}>Регистрация</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
           <input
@@ -49,13 +49,12 @@ export const RegisterUI: FC = () => {
           </button>
         </form>
         <div className={styles.loginPrompt}>
-         <span>Уже зарегистрированы?</span>
-         {/* <button className={styles.loginButton}>Войти</button> */}
-         <Link to='/login'className={styles.login}> 
+          <span>Уже зарегистрированы?</span>
+          <Link to='/login' className={styles.login}>
             Войти
-         </Link>
+          </Link>
         </div>
       </div>
-      </main>
- );
+    </main>
+  );
 };
