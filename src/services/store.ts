@@ -19,7 +19,7 @@ export const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production'
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export const useDispatch: () => AppDispatch = () => dispatchHook();

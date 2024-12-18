@@ -16,7 +16,7 @@ import {
 import { TUser } from '@utils-types';
 import { clearTokens, storeTokens } from '../../utils/auth';
 
-type TUserState = {
+export type TUserState = {
   isAuthChecked: boolean;
   isAuthenticated: boolean;
   loginError?: SerializedError;
@@ -82,7 +82,7 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-const slice = createSlice({
+export const slice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
@@ -95,6 +95,7 @@ const slice = createSlice({
         state.registerError = undefined;
         state.isAuthenticated = true;
         state.data = action.payload;
+        console.log(state.data);
       })
       .addCase(register.rejected, (state, action) => {
         state.registerError = action.meta.rejectedWithValue
@@ -108,13 +109,15 @@ const slice = createSlice({
         state.loginError = undefined;
         state.isAuthenticated = true;
         state.data = action.payload;
+        console.log(state.data);
         console.log(state.isAuthChecked);
         console.log(state.isAuthenticated);
       })
       .addCase(login.rejected, (state, action) => {
-        state.loginError = action.meta.rejectedWithValue
-          ? (action.payload as SerializedError)
-          : action.error;
+        // state.loginError = action.meta.rejectedWithValue
+        //   ? (action.payload as SerializedError)
+        //   : action.error;
+        state.loginError = action.payload as SerializedError;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         console.log('LOGOUT');
@@ -131,6 +134,7 @@ const slice = createSlice({
         state.isAuthenticated = true;
         state.isAuthChecked = true;
         state.data = action.payload;
+        // state.data = action.payload;   было
       })
       .addCase(getUser.rejected, (state) => {
         state.isAuthChecked = true;

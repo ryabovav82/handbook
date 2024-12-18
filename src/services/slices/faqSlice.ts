@@ -44,13 +44,13 @@ export const searchFaqItem = createAsyncThunk<TFaqItems[], string>(
   async (str: string): Promise<TFaqItems[]> => await searchFaqItemApi(str)
 );
 
-type TFaqItemsState = {
+export type TFaqItemsState = {
   isLoading: boolean;
   error: null | SerializedError;
   searchStr: string;
   data: TFaqItems[];
 };
-const initialState: TFaqItemsState = {
+export const initialState: TFaqItemsState = {
   isLoading: true,
   error: null,
   searchStr: '',
@@ -60,7 +60,27 @@ const initialState: TFaqItemsState = {
 export const faqItemsSlice = createSlice({
   name: 'faqItems',
   initialState,
-  reducers: {},
+  reducers: {
+    // Добавление нового элемента
+    addFaqItem(state, action) {
+      state.data.push(action.payload);
+    },
+
+    // Удаление элемента по ID
+    deleteFaqItem(state, action) {
+      state.data = state.data.filter((item) => item.id !== action.payload.id);
+    },
+
+    // Обновление текста и заголовка элемента
+    updateFaqItem(state, action) {
+      const { id, title, text } = action.payload;
+      const index = state.data.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        state.data[index].title = title || state.data[index].title;
+        state.data[index].text = text || state.data[index].text;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getFaqItems.pending, (state, action) => {
