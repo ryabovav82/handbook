@@ -79,7 +79,7 @@ export const faqItemsSlice = createSlice({
         state.data[index].title = title || state.data[index].title;
         state.data[index].text = text || state.data[index].text;
       }
-    },
+    }
   },
   extraReducers: (builder) => {
     builder

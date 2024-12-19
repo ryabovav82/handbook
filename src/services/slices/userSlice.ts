@@ -114,10 +114,9 @@ export const slice = createSlice({
         console.log(state.isAuthenticated);
       })
       .addCase(login.rejected, (state, action) => {
-        // state.loginError = action.meta.rejectedWithValue
-        //   ? (action.payload as SerializedError)
-        //   : action.error;
-        state.loginError = action.payload as SerializedError;
+        state.loginError = action.meta.rejectedWithValue
+          ? (action.payload as SerializedError)
+          : action.error;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         console.log('LOGOUT');
@@ -134,7 +133,6 @@ export const slice = createSlice({
         state.isAuthenticated = true;
         state.isAuthChecked = true;
         state.data = action.payload;
-        // state.data = action.payload;   было
       })
       .addCase(getUser.rejected, (state) => {
         state.isAuthChecked = true;

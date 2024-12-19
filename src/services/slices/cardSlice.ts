@@ -86,25 +86,19 @@ export const cardsSlice = createSlice({
       state.data = state.data.filter((card) => card.id !== action.payload.id);
     },
 
-    addCard: (
-      state,
-      action: PayloadAction<TCard>
-    ) => {
+    addCard: (state, action: PayloadAction<TCard>) => {
       state.data.push(action.payload);
     },
 
-    changeCard: (
-      state,
-      action: PayloadAction<TCard>
-    ) => {
+    changeCard: (state, action: PayloadAction<TCard>) => {
       const updatedCard = action.payload;
-      const index = state.data.findIndex(card => card.id === updatedCard.id);
-      
+      const index = state.data.findIndex((card) => card.id === updatedCard.id);
+
       if (index !== -1) {
         state.data[index].text = updatedCard.text;
-        state.data[index].image = `http://localhost:3001/menuitem/card/images/${updatedCard.id}.jpg`;
+        state.data[index].image =
+          `http://localhost:3001/menuitem/card/images/${updatedCard.id}.jpg`;
       }
-    
     }
   },
   extraReducers: (builder) => {
