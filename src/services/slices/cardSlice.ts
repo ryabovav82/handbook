@@ -63,12 +63,12 @@ export const changeCardImage = createAsyncThunk<
   }): Promise<any> => await changeCardImageApi({ imageName, imageFile })
 );
 
-type TCardsState = {
+export type TCardsState = {
   isLoading: boolean;
   error: null | SerializedError;
   data: TCard[];
 };
-const initialState: TCardsState = {
+export const initialState: TCardsState = {
   isLoading: true,
   error: null,
   data: []
@@ -84,6 +84,21 @@ export const cardsSlice = createSlice({
       action: PayloadAction<{ menuItemId: number; id: number }>
     ) => {
       state.data = state.data.filter((card) => card.id !== action.payload.id);
+    },
+
+    addCard: (state, action: PayloadAction<TCard>) => {
+      state.data.push(action.payload);
+    },
+
+    changeCard: (state, action: PayloadAction<TCard>) => {
+      const updatedCard = action.payload;
+      const index = state.data.findIndex((card) => card.id === updatedCard.id);
+
+      if (index !== -1) {
+        state.data[index].text = updatedCard.text;
+        state.data[index].image =
+          `http://localhost:3001/menuitem/card/images/${updatedCard.id}.jpg`;
+      }
     }
   },
   extraReducers: (builder) => {
