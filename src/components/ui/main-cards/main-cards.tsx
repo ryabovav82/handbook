@@ -70,7 +70,7 @@ export const MainCardsUI: FC<TCard> = ({
   return (
     <>
       {isVisible && (
-        <div className={styles.main_cards_card} key={id}>
+        <section className={styles.main_cards_card} key={id}>
           <div className={styles.main_cards_card_img}>
             <img
               className={styles.main_base_card_img}
@@ -115,7 +115,7 @@ export const MainCardsUI: FC<TCard> = ({
               </button>
             </div>
           )}
-        </div>
+        </section>
       )}
     </>
   );

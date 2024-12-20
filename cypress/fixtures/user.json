@@ -1,0 +1,8 @@
+{"success": true,
+    "accessToken": "test",
+    "refreshToken": "test",
+    "user": {
+    "email": "tatianaign20@yandex.ru",
+    "name": "Таня"
+    
+}}
