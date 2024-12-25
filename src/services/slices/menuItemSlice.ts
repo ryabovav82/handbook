@@ -40,13 +40,13 @@ export const changeMenuItem = createAsyncThunk<
     await changeMenuItemApi(data)
 );
 
-type TMenuItemsState = {
+export type TMenuItemsState = {
   isLoading: boolean;
   error: null | SerializedError;
   data: TMenuItems[];
   isSelected: TMenuItems | null;
 };
-const initialState: TMenuItemsState = {
+export const initialState: TMenuItemsState = {
   isLoading: true,
   error: null,
   data: [],

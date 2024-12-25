@@ -5,6 +5,8 @@ import styles from './navigate-card.module.css';
 import { changeMenuItem } from '../../../services/slices/menuItemSlice';
 import { EditModal } from '../../nav-edit/edit-modal';
 import { AppDispatch } from '../../../services/store';
+import { useSelector } from '../../../services/store';
+import { RootState } from '../../../services/store';
 
 interface CardProps {
   id: number;
@@ -17,6 +19,9 @@ interface CardProps {
 
 export const NavigateCardUI: FC<CardProps> = memo(
   ({ id, content, to, onDelete, onSelect, isSelected }) => {
+    const isAuthenticated = useSelector(
+      (state: RootState) => state.userReducer.isAuthenticated
+    );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const dispatch = useDispatch<AppDispatch>();
@@ -53,15 +58,16 @@ export const NavigateCardUI: FC<CardProps> = memo(
             <p className={styles.content}>{content}</p>
           </div>
         </div>
-
-        <div className={styles.menuWrapper}>
-          <button
-            className={styles.menuButton}
-            onClick={() => setIsModalOpen(true)}
-          >
-            ⋮
-          </button>
-        </div>
+        {isAuthenticated ? (
+          <div className={styles.menuWrapper}>
+            <button
+              className={styles.menuButton}
+              onClick={() => setIsModalOpen(true)}
+            >
+              ⋮
+            </button>
+          </div>
+        ) : null}
 
         {isModalOpen && (
           <NavModal

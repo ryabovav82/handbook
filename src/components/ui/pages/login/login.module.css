@@ -1,35 +1,60 @@
+body {
+  margin: 0;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000 !important;
+  -webkit-box-shadow: 0 0 0 50px white inset !important;
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.containerMain {
+  width: 100%;
+  margin: 5px auto; 
+  background-color: #2D3142;
+}
+
 .container {
-    background-color: #2D3142; 
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .title {
+   height: calc(100vh - 170px);
+   font-family: 'IBM Plex mono', sans-serif;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: #2D3142;
+   overflow-y: auto;
+   scrollbar-color: #4F5D75 #f7f7f8;
+   scrollbar-width: thin;
+}
+
+.title {
     color: #fff;
     font-size: 2rem;
     margin-bottom: 20px;
-  }
+}
   
-  .form {
+.form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 300px;
-  }
+}
   
-  .input {
+.input {
     padding: 10px;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     background-color: #fff;
     outline: none;
-  }
+}
+
+.input:focus {
+    border: 2px solid #f47c2b;
+}
   
-  .loginButton {
+.loginButton {
     background-color: #f47c2b;
     color: #fff;
     border: none;
@@ -38,27 +63,57 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
+}
   
-  .loginButton:hover {
-    background-color: #fff;
-    color: #f47c2b;
-    border: 2px solid #f47c2b;
-  }
-  
-  .registerButton {
-    margin-top: 15px;
-    background-color: transparent;
-    color: #f47c2b;
-    border: 2px solid #f47c2b;
+.loginButton:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
+    border: 2px solid #BFC0C0;
+}
+
+.loginButtonExit {
+    background-color: #4F5D75;
+    color: #fff;
+    border: none;
     padding: 10px 15px;
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+.loginButtonExit:hover {
+  background-color: #BFC0C0;
+  color: #ffffff;
+  border: 2px solid #BFC0C0;
+}
+
+.registerBlock {
+display: flex;
+flex-direction: row;
+margin-top: 15px;
+gap: 10px;
+}
+
+.registerText {
+  color: #fff;
+}
+
+.register {
+  color: #f47c2b;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.register:hover {
+  text-decoration: underline #BFC0C0;
+  text-underline-offset: 3px;
+  color: #BFC0C0;
+}
+
+@media screen and (max-width: 370px) {
+  .containerMain {
+    width: 350px;
   }
-  
-  .registerButton:hover {
-    background-color: #f47c2b;
-    color: #fff;
-  }
+}

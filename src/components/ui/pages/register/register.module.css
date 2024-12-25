@@ -1,35 +1,57 @@
+body {
+  margin: 0;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000 !important;
+  -webkit-box-shadow: 0 0 0 50px white inset !important;
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.containerMain {
+  width: 100%;
+  margin: 5px auto; 
+  background-color: #2D3142;
+}
+
 .container {
-    background-color: #2D3142; 
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  height: calc(100vh - 170px);
+  font-family: 'IBM Plex mono', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2D3142;
+  overflow-y: auto;
+  scrollbar-color: #4F5D75 #f7f7f8;
+  scrollbar-width: thin;
+}
   
-  .title {
-    color: #fff;
+.title {
+   color: #fff;
     font-size: 2rem;
     margin-bottom: 20px;
-  }
+}
   
-  .form {
+.form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 300px;
-  }
+}
   
-  .input {
+.input {
     padding: 10px;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     background-color: #fff;
     outline: none;
-  }
+}
+
   
-  .registerButton {
+.registerButton {
     background-color: #f47c2b;
     color: #fff;
     border: none;
@@ -38,34 +60,32 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-  }
+ }
   
-  .registerButton:hover {
-    background-color: #fff;
-    color: #f47c2b;
-    border: 2px solid #f47c2b;
-  }
+.registerButton:hover {
+    background-color: #BFC0C0;
+    color: #ffffff;
+    border: 2px solid #BFC0C0;
+}
   
-  .loginPrompt {
+.loginPrompt {
     margin-top: 15px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
     color: #fff;
-  }
-  
-  .loginButton {
-    background-color: transparent;
-    color: #f47c2b;
-    border: 2px solid #f47c2b;
-    padding: 5px 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .loginButton:hover {
-    background-color: #f47c2b;
-    color: #fff;
-  }
+}
+
+.login {
+  color: #f47c2b;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login:hover {
+  text-decoration: underline #BFC0C0;
+  text-underline-offset: 3px;
+  color: #BFC0C0;
+}
